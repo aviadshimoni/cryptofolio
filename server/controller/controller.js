@@ -1,4 +1,4 @@
-var Userdb = require('../model/model');
+let Userdb = require('../models/user');
 
 // create and save new user
 exports.create = (req,res)=>{

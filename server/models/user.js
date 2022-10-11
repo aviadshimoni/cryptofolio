@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var schema = new mongoose.Schema({
+let userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -12,8 +12,9 @@ var schema = new mongoose.Schema({
   },
   gender: String,
   status: String,
+  wallet: { type: mongoose.Schema.Types.ObjectId, ref: 'walletSchema'},
 });
 
-const Userdb = mongoose.model('userdb', schema);
+const userDB = mongoose.model('userdb', userSchema);
 
-module.exports = Userdb;
+module.exports = userDB;
