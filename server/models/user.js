@@ -10,8 +10,10 @@ let userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  gender: String,
-  status: String,
+  age: Number,
+  phone: String,
+  birthday: Date,
+
   wallet: { type: mongoose.Schema.Types.ObjectId, ref: 'walletSchema'},
 });
 

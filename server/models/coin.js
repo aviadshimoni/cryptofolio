@@ -10,6 +10,8 @@ let coinSchema = new mongoose.Schema({
     network : {
         type: String,
     }
+
+
 });
 
 const coinDB = mongoose.model('coindb', coinSchema);
