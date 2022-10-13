@@ -7,7 +7,6 @@ exports.create = (req, res) => {
     res.status(400).send({ message: 'Content can not be emtpy!' });
     return;
   }
-
   // new user
   const user = new Userdb({
     name: req.body.name,
@@ -112,4 +111,26 @@ exports.delete = (req, res) => {
         message: 'Could not delete User with id=' + id,
       });
     });
+};
+
+module.exports.register = (req, res) => {
+  var new_account = new Userdb({
+    name: req.body.name,
+    email: req.body.email,
+    gender: req.body.gender,
+    status: req.body.status,
+  });
+
+  Userdb.register(new_account, req.body.password, (err, account) => {
+    if (err) {
+      res.status(400);
+      return res.render('index', {
+        message: err.message,
+        error: err,
+      });
+    }
+    passport.authenticate('local')(req, res, () => {
+      res.redirect('/home');
+    });
+  });
 };
