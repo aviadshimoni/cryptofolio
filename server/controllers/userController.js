@@ -1,4 +1,4 @@
-let Userdb = require('../models/user');
+let userDB = require('../models/user');
 
 // create and save new user
 exports.create = (req, res) => {
@@ -8,7 +8,7 @@ exports.create = (req, res) => {
     return;
   }
   // new user
-  const user = new Userdb({
+  const user = new userDB({
     name: req.body.name,
     email: req.body.email,
     gender: req.body.gender,
@@ -20,7 +20,7 @@ exports.create = (req, res) => {
     .save(user)
     .then((data) => {
       //res.send(data)
-      res.redirect('/add-user');
+      // res.redirect('/add-user');
     })
     .catch((err) => {
       res.status(500).send({
@@ -36,7 +36,7 @@ exports.find = (req, res) => {
   if (req.query.email) {
     const email = req.query.email;
 
-    Userdb.findOne({ email })
+    userDB.findOne({ email })
       .then((data) => {
         if (!data) {
           res.status(404).send({ message: 'Not found user with id ' + id });
@@ -48,7 +48,7 @@ exports.find = (req, res) => {
         res.status(500).send({ message: 'Erro retrieving user with id ' + id });
       });
   } else {
-    Userdb.find()
+    userDB.find()
       .then((user) => {
         res.send(user);
       })
@@ -62,7 +62,7 @@ exports.find = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  Userdb.findOne({ username: req.query.username }).then((user) => {
+  userDB.findOne({ username: req.query.username }).then((user) => {
     res.send(user);
     console.log(user);
   });
@@ -75,7 +75,7 @@ exports.update = (req, res) => {
   }
 
   const id = req.params.id;
-  Userdb.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  userDB.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
@@ -94,7 +94,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Userdb.findByIdAndDelete(id)
+  userDB.findByIdAndDelete(id)
     .then((data) => {
       if (!data) {
         res
@@ -114,14 +114,14 @@ exports.delete = (req, res) => {
 };
 
 module.exports.register = (req, res) => {
-  var new_account = new Userdb({
+  var new_account = new userDB({
     name: req.body.name,
     email: req.body.email,
     gender: req.body.gender,
     status: req.body.status,
   });
 
-  Userdb.register(new_account, req.body.password, (err, account) => {
+  userDB.register(new_account, req.body.password, (err, account) => {
     if (err) {
       res.status(400);
       return res.render('index', {
