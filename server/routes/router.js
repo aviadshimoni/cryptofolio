@@ -2,8 +2,8 @@ const express = require('express');
 const route = express.Router();
 
 const services = require('../services/render');
-const controller = require('../controller/controller');
-const articleController = require('../controller/articleController');
+const userController = require('../controllers/userController');
+const articleController = require('../controllers/articleController');
 
 /**
  *  @description Root Route
@@ -27,11 +27,11 @@ route.get('/update-user', services.update_user);
 // API
 
 // User
-route.post('/api/users', controller.create);
-route.post('/register', controller.register);
-route.get('/api/users', controller.find);
-route.put('/api/users/:id', controller.update);
-route.delete('/api/users/:id', controller.delete);
+route.post('/api/users', userController.create);
+// route.post('/register', userController.register);
+route.get('/api/users', userController.find);
+route.put('/api/users/:id', userController.update);
+route.delete('/api/users/:id', userController.delete);
 
 // Article
 route.post('/api/articles', articleController.create);

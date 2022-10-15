@@ -7,15 +7,42 @@ let userSchema = new mongoose.Schema({
     required: true,
     index: { unique: true },
   },
+
   // password: {
   //   type: String,
   //   required: true,
   // },
-  gender: String,
-  status: String,
-  wallet: { type: mongoose.Schema.Types.ObjectId, ref: 'walletSchema' },
+
+  email: {
+    type: String,
+    required: true,
+    index: { unique: true },
+  },
+
+  gender: {
+    type: String,
+    required: true
+  },
+
+  phone: {
+    type: String
+  },
+
+  birthdate: {
+    type: Date
+  },
+
+  // balance : [{
+  //     coin: {
+  //       type: [Schema.Types.ObjectId],
+  //       ref: 'coin'
+  //     },
+  //     amount: {
+  //       type: Number
+  //     }
+  // }]
 });
 
-userSchema.plugin(passportLocalMongoose);
+// userSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('userdb', userSchema);
+module.exports = mongoose.model('users', userSchema);
