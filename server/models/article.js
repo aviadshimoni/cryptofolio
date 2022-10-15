@@ -19,5 +19,4 @@ let articleSchema = new mongoose.Schema({
   // comments: [{body:"string", by: mongoose.Schema.Types.ObjectId}],
 });
 
-const articleDB = mongoose.model('articledb', articleSchema);
-module.exports = articleDB;
+module.exports = mongoose.model('articles', articleSchema);
