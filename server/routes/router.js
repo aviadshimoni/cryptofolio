@@ -30,17 +30,17 @@ route.get('/update-user', services.update_user);
 
 // User
 route.post('/api/users', userController.create);
-// route.post('/register', userController.register);
-route.get('/api/users', userController.find);
+route.get('/api/users/:id', userController.getId);
+route.get('/api/users', userController.get);
 route.put('/api/users/:id', userController.update);
 route.delete('/api/users/:id', userController.delete);
 
 //Transactions
 route.post('/api/transactions', transactionController.create);
-route.delete('/api/transactions/:id', transactionController.delete);
 route.get('/api/transactions/:id', transactionController.getId);
-route.put('/api/transactions/:id', transactionController.update);
 route.get('/api/transactions', transactionController.get);
+route.put('/api/transactions/:id', transactionController.update);
+route.delete('/api/transactions/:id', transactionController.delete);
 
 //Coins
 route.post('/api/coins', coinController.create);
