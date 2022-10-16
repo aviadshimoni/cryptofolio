@@ -1,4 +1,4 @@
-const coinDB = require('../models/coin');
+const coin = require('../models/coin');
 
 exports.create = (req, res) => {
     // validate request
@@ -8,14 +8,14 @@ exports.create = (req, res) => {
     }
 
     // new coin
-    const coin = new coinDB({
+    const newCoin = new coin({
         name: req.body.name,
         shortName: req.body.shortName
     });
 
     // save article in the database
-    coin
-    .save(coin)
+    newCoin
+    .save(newCoin)
     .then((data) => {
         res.status(200);
         res.send(data);
@@ -31,13 +31,13 @@ exports.create = (req, res) => {
 
 exports.getId = (req, res) => {
     const id =  req.params.id;
-    coinDB
+    coin
     .findById(id)
-    .then((coin) => {
-        if (!coin) {
+    .then((data) => {
+        if (!data) {
             res.status(404).send({ message: 'Not found coin with id ' + id });
         } else {
-            res.send(coin);
+            res.send(data);
         }
     })
     .catch((err) => {
@@ -50,10 +50,10 @@ exports.getId = (req, res) => {
 exports.get = (req, res) => {
     const query =  req.query;
     if(Object.keys(query).length === 0){
-        coinDB
+        coin
         .find()
-        .then((coin) => {
-            res.send(coin);
+        .then((data) => {
+            res.send(data);
         })
         .catch((err) => {
             res.status(500).send({
@@ -75,13 +75,13 @@ exports.get = (req, res) => {
 
         console.log(`searching coins: ${JSON.stringify(parsedQuery)}`)
 
-        coinDB
+        coin
         .find(parsedQuery)
-        .then((coin) => {
-            if (!coin) {
+        .then((data) => {
+            if (!data) {
                 res.status(404).send({ message: 'Not found coins with the following query' });
             } else {
-                res.send(coin);
+                res.send(data);
             }
         })
         .catch((err) => {
@@ -97,7 +97,7 @@ exports.update = (req, res) => {
     }
 
     const id = req.params.id;
-    coinDB
+    coin
     .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
         if (!data) {
@@ -117,7 +117,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    coinDB
+    coin
     .findByIdAndDelete(id)
     .then((data) => {
         if (!data) {

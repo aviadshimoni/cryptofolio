@@ -1,4 +1,4 @@
-let userDB = require('../models/user');
+let user = require('../models/user');
 
 exports.create = (req, res) => {
   if (!req.body) {
@@ -6,7 +6,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  const user = new userDB({
+  const newUser = new user({
     name: req.body.name,
     email: req.body.email,
     gender: req.body.gender,
@@ -16,8 +16,8 @@ exports.create = (req, res) => {
     balance: req.body.balance,
   });
 
-  user
-  .save(user)
+  newUser
+  .save(newUser)
   .then((data) => {
     res.status(200);
     res.send(data);
@@ -33,13 +33,13 @@ exports.create = (req, res) => {
 
 exports.getId = (req, res) => {
   const id =  req.params.id;
-  userDB
+  user
   .findById(id)
-  .then((user) => {
-      if (!user) {
+  .then((data) => {
+      if (!data) {
           res.status(404).send({ message: 'Not found user with id ' + id });
       } else {
-          res.send(user);
+          res.send(data);
       }
   })
   .catch((err) => {
@@ -52,10 +52,10 @@ exports.getId = (req, res) => {
 exports.get = (req, res) => {
   const query =  req.query;
   if(Object.keys(query).length === 0){
-    userDB
+    user
     .find()
-    .then((user) => {
-        res.send(user);
+    .then((data) => {
+        res.send(data);
     })
     .catch((err) => {
         res.status(500).send({
@@ -85,13 +85,13 @@ exports.get = (req, res) => {
 
     console.log(`searching users: ${JSON.stringify(parsedQuery)}`)
 
-    userDB
+    user
     .find(parsedQuery)
-    .then((user) => {
-        if (!user) {
+    .then((data) => {
+        if (!data) {
             res.status(404).send({ message: 'Not found user with the following query' });
         } else {
-            res.send(user);
+            res.send(data);
         }
     })
     .catch((err) => {
@@ -108,7 +108,7 @@ exports.update = (req, res) => {
   }
 
   const id = req.params.id;
-  userDB
+  user
   .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
   .then((data) => {
       if (!data) {
@@ -127,7 +127,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  userDB
+  user
   .findByIdAndDelete(id)
   .then((data) => {
       if (!data) {

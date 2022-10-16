@@ -1,4 +1,4 @@
-const transactionDB = require('../models/transaction');
+const transaction = require('../models/transaction');
 
 exports.create = (req, res) => {
     if (!req.body) {
@@ -6,14 +6,14 @@ exports.create = (req, res) => {
         return;
     }
 
-    const transaction = new transactionDB({
+    const newTransaction = new transaction({
         amount: req.body.amount,
         userId: req.body.userId,
         coinId: req.body.coinId,
         date: req.body.date,
     });
-    transaction
-    .save(transaction)
+    newTransaction
+    .save(newTransaction)
     .then((data) => {
         res.status(200);
         res.send(data);
@@ -29,13 +29,13 @@ exports.create = (req, res) => {
 
 exports.getId = (req, res) => {
     const id =  req.params.id;
-    transactionDB
+    transaction
     .findById(id)
-    .then((transaction) => {
-        if (!transaction) {
+    .then((data) => {
+        if (!data) {
             res.status(404).send({ message: 'Not found transaction with id ' + id });
         } else {
-            res.send(transaction);
+            res.send(data);
         }
     })
     .catch((err) => {
@@ -48,10 +48,10 @@ exports.getId = (req, res) => {
 exports.get = (req, res) => {
     const query =  req.query;
     if(Object.keys(query).length === 0){
-        transactionDB
+        transaction
         .find()
-        .then((transaction) => {
-            res.send(transaction);
+        .then((data) => {
+            res.send(data);
         })
         .catch((err) => {
             res.status(500).send({
@@ -89,13 +89,13 @@ exports.get = (req, res) => {
 
         console.log(`searching transactions: ${JSON.stringify(parsedQuery)}`)
 
-        transactionDB
+        transaction
         .find(parsedQuery)
-        .then((transaction) => {
-            if (!transaction) {
+        .then((data) => {
+            if (!data) {
                 res.status(404).send({ message: 'Not found transaction with the following query' });
             } else {
-                res.send(transaction);
+                res.send(data);
             }
         })
         .catch((err) => {
@@ -111,7 +111,7 @@ exports.update = (req, res) => {
     }
 
     const id = req.params.id;
-    transactionDB
+    transaction
     .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
         if (!data) {
@@ -131,7 +131,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    transactionDB
+    transaction
     .findByIdAndDelete(id)
     .then((data) => {
         if (!data) {
