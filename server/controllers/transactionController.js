@@ -1,53 +1,49 @@
 const transactionDB = require('../models/transaction');
 
 exports.create = (req, res) => {
-    // validate request
     if (!req.body) {
         res.status(400).send({ message: 'Content can not be emtpy!' });
         return;
     }
 
-    // new transaction
     const transaction = new transactionDB({
         amount: req.body.amount,
         userId: req.body.userId,
         coinId: req.body.coinId,
         date: req.body.date,
     });
-
-    // save article in the database
     transaction
-        .save(transaction)
-        .then((data) => {
-            res.status(200);
-            res.send(data);
-        })
-        .catch((err) => {
-            res.status(500).send({
-                message:
-                    err.message ||
-                    'Some error occurred while creating a create operation',
-            });
+    .save(transaction)
+    .then((data) => {
+        res.status(200);
+        res.send(data);
+    })
+    .catch((err) => {
+        res.status(500).send({
+            message:
+                err.message ||
+                'Some error occurred while creating a create operation',
         });
+    });
 };
 
 exports.getId = (req, res) => {
     const id =  req.params.id;
     console.log(`id : ${typeof(id)}`);
     transactionDB
-        .findById(id)
-        .then((transaction) => {
-            if (!transaction) {
-                res.status(404).send({ message: 'Not found transaction with id ' + id });
-            } else {
-                res.send(transaction);
-            }
-        })
-        .catch((err) => {
-            res
-                .status(500)
-                .send({ message: 'Error retrieving transaction with id ' + id });
-        });
+    .findById(id)
+    .then((transaction) => {
+        if (!transaction) {
+            res.status(404).send({ message: 'Not found transaction with id ' + id });
+        } else {
+            res.send(transaction);
+        }
+    })
+    .catch((err) => {
+        res
+            .status(500)
+            .send({ message: 'Error retrieving transaction with id ' + id });
+    });
 };
 
 exports.get = (req, res) => {
@@ -96,7 +92,7 @@ exports.get = (req, res) => {
         console.log(`searching transactions: ${JSON.stringify(parsedQuery)}`)
 
         transactionDB
-    .find(parsedQuery)
+        .find(parsedQuery)
         .then((transaction) => {
             if (!transaction) {
                 res.status(404).send({ message: 'Not found transaction with the following query' });
@@ -112,25 +108,25 @@ exports.get = (req, res) => {
     }
 };
 exports.update = (req, res) => {
-   if (!req.body) {
-       return res.status(400).send({ message: 'Data to update can not be empty' });
-   }
+    if (!req.body) {
+        return res.status(400).send({ message: 'Data to update can not be empty' });
+    }
 
-   const id = req.params.id;
-   transactionDB
-       .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-       .then((data) => {
-           if (!data) {
-               res.status(404).send({
-                   message: `Cannot Update transaction with ${id}. Maybe transaction not found!`,
-               });
-           } else {
-               res.send(data);
-           }
-       })
-       .catch((err) => {
-           res.status(500).send({ message: 'Error Update transaction information' });
-       });
+    const id = req.params.id;
+    transactionDB
+    .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then((data) => {
+        if (!data) {
+            res.status(404).send({
+                message: `Cannot Update transaction with ${id}. Maybe transaction not found!`,
+            });
+        } else {
+            res.send(data);
+        }
+    })
+    .catch((err) => {
+        res.status(500).send({ message: 'Error Update transaction information' });
+    });
 };
 
 //// Delete a user with specified user id in the request
@@ -138,21 +134,21 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     transactionDB
-        .findByIdAndDelete(id)
-        .then((data) => {
-            if (!data) {
-                res
-                    .status(404)
-                    .send({ message: `Cannot Delete transaction with id ${id}. Maybe id is wrong` });
-            } else {
-                res.send({
-                    message: 'transaction was deleted successfully!',
-                });
-            }
-        })
-        .catch((err) => {
-            res.status(500).send({
-                message: 'Could not delete transaction with id=' + id,
+    .findByIdAndDelete(id)
+    .then((data) => {
+        if (!data) {
+            res
+                .status(404)
+                .send({ message: `Cannot Delete transaction with id ${id}. Maybe id is wrong` });
+        } else {
+            res.send({
+                message: 'transaction was deleted successfully!',
             });
+        }
+    })
+    .catch((err) => {
+        res.status(500).send({
+            message: 'Could not delete transaction with id=' + id,
         });
+    });
 };
