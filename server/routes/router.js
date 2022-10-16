@@ -3,6 +3,8 @@ const route = express.Router();
 
 const services = require('../services/render');
 const userController = require('../controllers/userController');
+const transactionController = require('../controllers/transactionController');
+const coinController = require('../controllers/coinController');
 const articleController = require('../controllers/articleController');
 
 /**
@@ -32,6 +34,15 @@ route.post('/api/users', userController.create);
 route.get('/api/users', userController.find);
 route.put('/api/users/:id', userController.update);
 route.delete('/api/users/:id', userController.delete);
+
+//Transactions
+route.post('/api/transactions', transactionController.create);
+route.delete('/api/transactions/:id', transactionController.delete);
+route.get('/api/transactions/:id', transactionController.getId);
+route.get('/api/transactions', transactionController.get);
+
+//Coins
+route.post('/api/coins', coinController.create);
 
 // Article
 route.post('/api/articles', articleController.create);
