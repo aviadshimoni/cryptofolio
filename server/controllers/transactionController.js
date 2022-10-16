@@ -99,7 +99,7 @@ exports.get = (req, res) => {
     .find(parsedQuery)
         .then((transaction) => {
             if (!transaction) {
-                res.status(404).send({ message: 'Not found transaction with id' });
+                res.status(404).send({ message: 'Not found transaction with the following query' });
             } else {
                 res.send(transaction);
             }
@@ -107,7 +107,7 @@ exports.get = (req, res) => {
         .catch((err) => {
             res
                 .status(500)
-                .send({ message: 'Error retrieving transaction with id '});
+                .send({ message: 'Error retrieving transaction with the following query'});
         });
     }
 };
@@ -143,7 +143,7 @@ exports.delete = (req, res) => {
             if (!data) {
                 res
                     .status(404)
-                    .send({ message: `Cannot Delete with id ${id}. Maybe id is wrong` });
+                    .send({ message: `Cannot Delete transaction with id ${id}. Maybe id is wrong` });
             } else {
                 res.send({
                     message: 'transaction was deleted successfully!',
