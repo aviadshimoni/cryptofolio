@@ -49,10 +49,4 @@ route.get('/api/coins', coinController.get);
 route.put('/api/coins/:id', coinController.update);
 route.delete('/api/coins/:id', coinController.delete);
 
-// Article
-route.post('/api/articles', articleController.create);
-route.get('/api/articles', articleController.find);
-route.put('/api/articles/:id', articleController.update);
-route.delete('/api/articles/:id', articleController.delete);
-
 module.exports = route;
