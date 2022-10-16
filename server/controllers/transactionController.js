@@ -31,7 +31,7 @@ exports.create = (req, res) => {
         });
 };
 
-exports.find = (req, res) => {
+exports.getId = (req, res) => {
     const id =  req.params.id;
     console.log(`id : ${typeof(id)}`);
     transactionDB
@@ -50,7 +50,7 @@ exports.find = (req, res) => {
         });
 };
 
-exports.getAll = (req, res) => {
+exports.get = (req, res) => {
     const query =  req.query;
     if(Object.keys(query).length === 0){
         transactionDB
@@ -110,20 +110,6 @@ exports.getAll = (req, res) => {
                 .send({ message: 'Error retrieving transaction with id '});
         });
     }
-};
-
-exports.getQuery = (req, res) => {
-    transactionDB
-        .find()
-        .then((transaction) => {
-            res.send(transaction);
-        })
-        .catch((err) => {
-            res.status(500).send({
-                message:
-                    err.message || 'Error Occurred while retriving transaction information',
-            });
-        });
 };
 //exports.update = (req, res) => {
 //    if (!req.body) {

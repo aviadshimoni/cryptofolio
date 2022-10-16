@@ -38,8 +38,8 @@ route.delete('/api/users/:id', userController.delete);
 //Transactions
 route.post('/api/transactions', transactionController.create);
 route.delete('/api/transactions/:id', transactionController.delete);
-route.get('/api/transactions/:id', transactionController.find);
-route.get('/api/transactions', transactionController.getAll);
+route.get('/api/transactions/:id', transactionController.getId);
+route.get('/api/transactions', transactionController.get);
 
 //Coins
 route.post('/api/coins', coinController.create);
