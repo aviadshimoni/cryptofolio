@@ -8,10 +8,10 @@ let userSchema = new mongoose.Schema({
     index: { unique: true },
   },
 
-  // password: {
-  //   type: String,
-  //   required: true,
-  // },
+  password: {
+    type: String,
+    required: true,
+  },
 
   email: {
     type: String,
@@ -28,19 +28,19 @@ let userSchema = new mongoose.Schema({
     type: String
   },
 
-  birthdate: {
+  birthDate: {
     type: Date
   },
 
-  // balance : [{
-  //     coin: {
-  //       type: [Schema.Types.ObjectId],
-  //       ref: 'coin'
-  //     },
-  //     amount: {
-  //       type: Number
-  //     }
-  // }]
+  balance : [{
+      coin: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'coin'
+      },
+      amount: {
+        type: Number
+      }
+  }]
 });
 
 // userSchema.plugin(passportLocalMongoose);
