@@ -44,6 +44,10 @@ route.get('/api/transactions', transactionController.get);
 
 //Coins
 route.post('/api/coins', coinController.create);
+route.get('/api/coins/:id', coinController.getId);
+route.get('/api/coins', coinController.get);
+route.put('/api/coins/:id', coinController.update);
+route.delete('/api/coins/:id', coinController.delete);
 
 // Article
 route.post('/api/articles', articleController.create);

@@ -29,7 +29,6 @@ exports.create = (req, res) => {
 
 exports.getId = (req, res) => {
     const id =  req.params.id;
-    console.log(`id : ${typeof(id)}`);
     transactionDB
     .findById(id)
     .then((transaction) => {
@@ -64,7 +63,6 @@ exports.get = (req, res) => {
     else{
         let parsedQuery={}
         const userId = query.userId
-        console.log(`${userId}`)
         const coinId = query.coinId
         let fromDate = query.fromDate
         let toDate = query.toDate
