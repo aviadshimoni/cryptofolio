@@ -15,95 +15,124 @@ exports.create = (req, res) => {
 
     // save article in the database
     coin
-        .save(coin)
-        .then((data) => {
-            res.status(200);
-            res.send(data);
+    .save(coin)
+    .then((data) => {
+        res.status(200);
+        res.send(data);
+    })
+    .catch((err) => {
+        res.status(500).send({
+            message:
+                err.message ||
+                'Some error occurred while creating a create operation',
+        });
+    });
+};
+
+exports.getId = (req, res) => {
+    const id =  req.params.id;
+    coinsDB
+    .findById(id)
+    .then((coin) => {
+        if (!coin) {
+            res.status(404).send({ message: 'Not found coin with id ' + id });
+        } else {
+            res.send(coin);
+        }
+    })
+    .catch((err) => {
+        res
+            .status(500)
+            .send({ message: 'Error retrieving coin with id ' + id });
+    });
+};
+
+exports.get = (req, res) => {
+    const query =  req.query;
+    if(Object.keys(query).length === 0){
+        coinsDB
+        .find()
+        .then((coin) => {
+            res.send(coin);
         })
         .catch((err) => {
             res.status(500).send({
                 message:
-                    err.message ||
-                    'Some error occurred while creating a create operation',
+                    err.message || 'Error Occurred while retriving coin information',
             });
         });
+    }
+    else{
+        let parsedQuery={}
+        const name = query.name
+        const shortName = query.shortName
+        if(name){
+            parsedQuery["name"]=name
+        }
+        if(shortName){
+            parsedQuery["shortName"]=shortName
+        }
+
+        console.log(`searching coins: ${JSON.stringify(parsedQuery)}`)
+
+        coinsDB
+        .find(parsedQuery)
+        .then((coin) => {
+            if (!coin) {
+                res.status(404).send({ message: 'Not found coins with the following query' });
+            } else {
+                res.send(coin);
+            }
+        })
+        .catch((err) => {
+            res
+                .status(500)
+                .send({ message: 'Error retrieving coins with the following query'});
+        });
+    }
 };
-//
-//exports.find = (req, res) => {
-//    if (req.query.id) {
-//        const id = req.query.id;
-//
-//        transactionDB
-//            .findById(id)
-//            .then((data) => {
-//                if (!data) {
-//                    res.status(404).send({ message: 'Not found transaction with id ' + id });
-//                } else {
-//                    res.send(data);
-//                }
-//            })
-//            .catch((err) => {
-//                res
-//                    .status(500)
-//                    .send({ message: 'Error retrieving transaction with id ' + id });
-//            });
-//    } else {
-//        transactionDB
-//            .find()
-//            .then((transaction) => {
-//                res.send(transaction);
-//            })
-//            .catch((err) => {
-//                res.status(500).send({
-//                    message:
-//                        err.message || 'Error Occurred while retriving transaction information',
-//                });
-//            });
-//    }
-//};
-//
-//exports.update = (req, res) => {
-//    if (!req.body) {
-//        return res.status(400).send({ message: 'Data to update can not be empty' });
-//    }
-//
-//    const id = req.params.id;
-//    transactionDB
-//        .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-//        .then((data) => {
-//            if (!data) {
-//                res.status(404).send({
-//                    message: `Cannot Update transaction with ${id}. Maybe transaction not found!`,
-//                });
-//            } else {
-//                res.send(data);
-//            }
-//        })
-//        .catch((err) => {
-//            res.status(500).send({ message: 'Error Update transaction information' });
-//        });
-//};
-//
+exports.update = (req, res) => {
+    if (!req.body) {
+        return res.status(400).send({ message: 'Data to update can not be empty' });
+    }
+
+    const id = req.params.id;
+    coinsDB
+    .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then((data) => {
+        if (!data) {
+            res.status(404).send({
+                message: `Cannot Update coin with ${id}. Maybe transaction not found!`,
+            });
+        } else {
+            res.send(data);
+        }
+    })
+    .catch((err) => {
+        res.status(500).send({ message: 'Error Update coin information' });
+    });
+};
+
 //// Delete a user with specified user id in the request
-//exports.delete = (req, res) => {
-//    const id = req.params.id;
-//
-//    transactionDB
-//        .findByIdAndDelete(id)
-//        .then((data) => {
-//            if (!data) {
-//                res
-//                    .status(404)
-//                    .send({ message: `Cannot Delete with id ${id}. Maybe id is wrong` });
-//            } else {
-//                res.send({
-//                    message: 'transaction was deleted successfully!',
-//                });
-//            }
-//        })
-//        .catch((err) => {
-//            res.status(500).send({
-//                message: 'Could not delete transaction with id=' + id,
-//            });
-//        });
-//};
+exports.delete = (req, res) => {
+    const id = req.params.id;
+
+    coinsDB
+    .findByIdAndDelete(id)
+    .then((data) => {
+        if (!data) {
+            res
+                .status(404)
+                .send({ message: `Cannot Delete coin with id ${id}. Maybe id is wrong` });
+        } else {
+            res.send({
+                message: 'transaction was coin successfully!',
+            });
+        }
+    })
+    .catch((err) => {
+        res.status(500).send({
+            message: 'Could not delete coin with id=' + id,
+        });
+    });
+};
