@@ -39,6 +39,7 @@ route.delete('/api/users/:id', userController.delete);
 route.post('/api/transactions', transactionController.create);
 route.delete('/api/transactions/:id', transactionController.delete);
 route.get('/api/transactions/:id', transactionController.getId);
+route.put('/api/transactions/:id', transactionController.update);
 route.get('/api/transactions', transactionController.get);
 
 //Coins

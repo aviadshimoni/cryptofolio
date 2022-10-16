@@ -111,28 +111,28 @@ exports.get = (req, res) => {
         });
     }
 };
-//exports.update = (req, res) => {
-//    if (!req.body) {
-//        return res.status(400).send({ message: 'Data to update can not be empty' });
-//    }
-//
-//    const id = req.params.id;
-//    transactionDB
-//        .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-//        .then((data) => {
-//            if (!data) {
-//                res.status(404).send({
-//                    message: `Cannot Update transaction with ${id}. Maybe transaction not found!`,
-//                });
-//            } else {
-//                res.send(data);
-//            }
-//        })
-//        .catch((err) => {
-//            res.status(500).send({ message: 'Error Update transaction information' });
-//        });
-//};
-//
+exports.update = (req, res) => {
+   if (!req.body) {
+       return res.status(400).send({ message: 'Data to update can not be empty' });
+   }
+
+   const id = req.params.id;
+   transactionDB
+       .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+       .then((data) => {
+           if (!data) {
+               res.status(404).send({
+                   message: `Cannot Update transaction with ${id}. Maybe transaction not found!`,
+               });
+           } else {
+               res.send(data);
+           }
+       })
+       .catch((err) => {
+           res.status(500).send({ message: 'Error Update transaction information' });
+       });
+};
+
 //// Delete a user with specified user id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
