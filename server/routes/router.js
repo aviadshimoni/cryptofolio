@@ -5,7 +5,6 @@ const services = require('../services/render');
 const userController = require('../controllers/userController');
 const transactionController = require('../controllers/transactionController');
 const coinController = require('../controllers/coinController');
-const articleController = require('../controllers/articleController');
 
 /**
  *  @description Root Route
