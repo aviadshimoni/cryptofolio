@@ -11,4 +11,4 @@ let coinSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('coins', coinSchema);
+module.exports = mongoose.model('coin', coinSchema);
