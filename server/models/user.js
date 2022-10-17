@@ -26,8 +26,6 @@ let userSchema = new mongoose.Schema({
   birthDate: {
     type: Date,
   },
-
-  transactions: [{ ref: 'transaction', type: mongoose.Schema.Types.ObjectId }],
 });
 
 // userSchema.plugin(passportLocalMongoose);

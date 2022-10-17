@@ -29,6 +29,7 @@ exports.create = (req, res) => {
 
 exports.getId = (req, res) => {
   const id = req.params.id;
+  console.log('------------');
   transactionModel
     .findById(id)
     .then((transaction) => {
@@ -95,21 +96,17 @@ exports.get = (req, res) => {
       .find(parsedQuery)
       .then((transaction) => {
         if (!transaction) {
-          res
-            .status(404)
-            .send({
-              message: 'Not found transaction with the following query',
-            });
+          res.status(404).send({
+            message: 'Not found transaction with the following query',
+          });
         } else {
           res.send(transaction);
         }
       })
       .catch((err) => {
-        res
-          .status(500)
-          .send({
-            message: 'Error retrieving transaction with the following query',
-          });
+        res.status(500).send({
+          message: 'Error retrieving transaction with the following query',
+        });
       });
   }
 };
@@ -143,11 +140,9 @@ exports.delete = (req, res) => {
     .findByIdAndDelete(id)
     .then((data) => {
       if (!data) {
-        res
-          .status(404)
-          .send({
-            message: `Cannot Delete transaction with id ${id}. Maybe id is wrong`,
-          });
+        res.status(404).send({
+          message: `Cannot Delete transaction with id ${id}. Maybe id is wrong`,
+        });
       } else {
         res.send({
           message: 'transaction was deleted successfully!',
@@ -158,5 +153,22 @@ exports.delete = (req, res) => {
       res.status(500).send({
         message: 'Could not delete transaction with id=' + id,
       });
+    });
+};
+
+exports.getUserTransactions = (req, res) => {
+  const id = req.query.id;
+  transactionModel
+    .find()
+    .then((transactions) => {
+      const data = transactions.map((t) => {
+        if (t.userId == id) return t;
+      });
+      res.send(data);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send({ message: 'Error retrieving transaction with id ' + id });
     });
 };

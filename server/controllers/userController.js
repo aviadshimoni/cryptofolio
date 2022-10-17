@@ -12,7 +12,6 @@ exports.create = (req, res) => {
     password: req.body.password,
     phone: req.body.phone,
     birthdate: req.body.birthdate,
-    transactions: [],
   });
 
   user
