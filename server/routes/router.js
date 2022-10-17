@@ -12,6 +12,7 @@ const coinController = require('../controllers/coinController');
  */
 // route.get('/', services.login);
 route.get('/', services.homeRoutes);
+route.get('/coin', coinData.getCurrentPrice);
 
 /**
  *  @description add users
