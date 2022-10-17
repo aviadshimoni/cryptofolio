@@ -1,4 +1,4 @@
-let userDB = require('../models/user');
+let userModel = require('../models/user');
 
 exports.create = (req, res) => {
   if (!req.body) {
@@ -6,7 +6,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  const user = new userDB({
+  const user = new userModel({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
@@ -32,7 +32,7 @@ exports.create = (req, res) => {
 
 exports.getId = (req, res) => {
   const id = req.params.id;
-  userDB
+  userModel
     .findById(id)
     .then((user) => {
       if (!user) {
@@ -49,7 +49,7 @@ exports.getId = (req, res) => {
 exports.get = (req, res) => {
   const query = req.query;
   if (Object.keys(query).length === 0) {
-    userDB
+    userModel
       .find()
       .then((user) => {
         res.send(user);
@@ -81,7 +81,7 @@ exports.get = (req, res) => {
 
     console.log(`searching users: ${JSON.stringify(parsedQuery)}`);
 
-    userDB
+    userModel
       .find(parsedQuery)
       .then((user) => {
         if (!user) {
@@ -106,7 +106,7 @@ exports.update = (req, res) => {
   }
 
   const id = req.params.id;
-  userDB
+  userModel
     .findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
@@ -125,7 +125,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  userDB
+  userModel
     .findByIdAndDelete(id)
     .then((data) => {
       if (!data) {
