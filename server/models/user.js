@@ -19,28 +19,15 @@ let userSchema = new mongoose.Schema({
     index: { unique: true },
   },
 
-  gender: {
-    type: String,
-    required: true
-  },
-
   phone: {
-    type: String
+    type: String,
   },
 
   birthDate: {
-    type: Date
+    type: Date,
   },
 
-  balance : [{
-      coin: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'coin'
-      },
-      amount: {
-        type: Number
-      }
-  }]
+  transactions: [{ ref: 'transaction', type: mongoose.Schema.Types.ObjectId }],
 });
 
 // userSchema.plugin(passportLocalMongoose);
