@@ -150,3 +150,20 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+function getSumTransactionsMap(transactions) {
+    let sumTransactions = {};
+
+    for (transaction : transactions) {
+        let coin = transaction["coinId"];
+        let amount = transactions["amount"];
+        if (coin in sumTransactions){
+            let tempAmount = sumTransactions["amount"];
+            sumTransactions[coin] = amount + tempAmount;
+        }
+        else {
+            sumTransactions[coin] = amount;
+        }
+    }
+    return sumTransactions;
+}

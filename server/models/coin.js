@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let coinSchema = new mongoose.Schema({
+const coinSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -8,6 +8,9 @@ let coinSchema = new mongoose.Schema({
     shortName: {
         type: String,
         required: true,
+    },
+    network: {
+        type: String
     }
 });
 
