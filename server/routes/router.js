@@ -4,6 +4,7 @@ const route = express.Router();
 const services = require('../services/render');
 const controller = require('../controller/controller');
 const articleController = require('../controller/articleController');
+const coinData = require('../services/coin-service');
 
 /**
  *  @description Root Route
@@ -11,6 +12,7 @@ const articleController = require('../controller/articleController');
  */
 // route.get('/', services.login);
 route.get('/', services.homeRoutes);
+route.get('/coin', coinData.getCurrentPrice);
 
 /**
  *  @description add users
