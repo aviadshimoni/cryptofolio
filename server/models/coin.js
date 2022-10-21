@@ -6,7 +6,7 @@ let coinSchema = new mongoose.Schema({
     required: true,
   },
   shortName: {
-    type: String,
+    type: String, // i.e: BTC/ETH/
     required: true,
   },
 });

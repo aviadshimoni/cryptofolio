@@ -1,4 +1,5 @@
 const transactionModel = require('../models/transaction');
+const mongoose = require('mongoose');
 
 exports.create = (req, res) => {
   if (!req.body) {
@@ -159,4 +160,34 @@ exports.delete = (req, res) => {
         message: 'Could not delete transaction with id=' + id,
       });
     });
+};
+
+exports.balance = (req, res) => {
+  const query = req.query;
+  if (Object.keys(query).length === 0) {
+    res.status(500).send("empty userId")
+  } else {
+    const userId =  new mongoose.Types.ObjectId(query.userId);
+    transactionModel
+        .aggregate([
+          {
+            $match: { userId : userId }
+          },
+          {
+            $group: { _id: "$coinId",amount: { $sum: { "$toInt": "$amount"}}}
+          },
+          {$lookup: {from: 'coins', localField: '_id', foreignField: '_id', as: 'coin' }}
+        ])
+        .then((transaction) => {
+          if (!transaction) {
+            res
+                .status(404)
+                .send({
+                  message: 'Not found transaction with the following query',
+                });
+          } else {
+            res.send(transaction);
+          }
+        })
+  }
 };

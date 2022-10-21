@@ -13,7 +13,6 @@ const coinData = require('../services/coin-service');
  */
 // route.get('/', services.login);
 route.get('/', services.homeRoutes);
-route.get('/coin', coinData.getCurrentPrice);
 
 /**
  *  @description add users
@@ -26,6 +25,10 @@ route.get('/add-user', services.add_user);
  *  @method GET /update-user
  */
 route.get('/update-user', services.update_user);
+route.get('/api/coin-price', coinData.getCurrentPrice);
+
+route.get('/api/user/balance', transactionController.balance);
+route.get('/api/user/totalWorth', coinData.getTotalPortifolioWorth);
 
 // API
 
