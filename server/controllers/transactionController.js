@@ -14,7 +14,7 @@ exports.create = (req, res) => {
     date: req.body.date,
   });
   transaction
-    .populate(coinId)
+    .populate('coinId', 'shortName')
     .save(transaction)
     .then((data) => {
       res.status(200);
@@ -164,12 +164,7 @@ exports.delete = (req, res) => {
     });
 };
 
-
-
-
-
-
-exports.sum = (req, res) => {
+exports.balance = (req, res) => {
   const query = req.query;
   if (Object.keys(query).length === 0) {
     res.status(500).send("empty userId")
@@ -181,8 +176,9 @@ exports.sum = (req, res) => {
           $match: { userId : userId }
         },
         {
-          $group: { _id: "$coinId", sum: { $sum: { "$toInt": "$amount"}}}
-        }
+          $group: { _id: "$coinId",amount: { $sum: { "$toInt": "$amount"}}}
+        },
+        {$lookup: {from: 'coins', localField: '_id', foreignField: '_id', as: 'coin' }}
       ])
       .then((transaction) => {
         if (!transaction) {

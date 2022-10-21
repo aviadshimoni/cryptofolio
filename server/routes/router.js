@@ -26,7 +26,7 @@ route.get('/add-user', services.add_user);
  *  @method GET /update-user
  */
 route.get('/update-user', services.update_user);
-
+route.get('/api/getUserBalance', transactionController.balance);
 // API
 
 // User
@@ -40,7 +40,6 @@ route.delete('/api/users/:id', userController.delete);
 route.post('/api/transactions', transactionController.create);
 route.get('/api/transactions/:id', transactionController.getId);
 route.get('/api/transactions', transactionController.get);
-route.get('/api/sum', transactionController.sum);
 route.put('/api/transactions/:id', transactionController.update);
 route.delete('/api/transactions/:id', transactionController.delete);
 
