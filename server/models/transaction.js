@@ -6,11 +6,13 @@ let transactionSchema = new mongoose.Schema({
     required: true,
   },
   userId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
     required: true,
   },
   coinId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'coin',
     required: true,
   },
   date: {
