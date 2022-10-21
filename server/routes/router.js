@@ -5,6 +5,7 @@ const services = require('../services/render');
 const userController = require('../controllers/userController');
 const transactionController = require('../controllers/transactionController');
 const coinController = require('../controllers/coinController');
+const coordController = require('../controllers/coordController');
 const coinData = require('../services/coin-service');
 
 /**
@@ -52,5 +53,12 @@ route.get('/api/coins/:id', coinController.getId);
 route.get('/api/coins', coinController.get);
 route.put('/api/coins/:id', coinController.update);
 route.delete('/api/coins/:id', coinController.delete);
+
+//Coords
+route.post('/api/coords', coordController.create);
+route.get('/api/coords/:id', coordController.getId);
+route.get('/api/coords', coordController.get);
+route.put('/api/coords/:id', coordController.update);
+route.delete('/api/coords/:id', coordController.delete);
 
 module.exports = route;
