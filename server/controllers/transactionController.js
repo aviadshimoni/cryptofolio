@@ -1,4 +1,5 @@
 const transactionModel = require('../models/transaction');
+const mongoose = require('mongoose');
 
 exports.create = (req, res) => {
   if (!req.body) {
@@ -13,6 +14,7 @@ exports.create = (req, res) => {
     date: req.body.date,
   });
   transaction
+    .populate(coinId)
     .save(transaction)
     .then((data) => {
       res.status(200);
@@ -113,6 +115,7 @@ exports.get = (req, res) => {
       });
   }
 };
+
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: 'Data to update can not be empty' });
@@ -159,4 +162,38 @@ exports.delete = (req, res) => {
         message: 'Could not delete transaction with id=' + id,
       });
     });
+};
+
+
+
+
+
+
+exports.sum = (req, res) => {
+  const query = req.query;
+  if (Object.keys(query).length === 0) {
+    res.status(500).send("empty userId")
+  } else {
+    const userId =  new mongoose.Types.ObjectId(query.userId);
+    transactionModel
+      .aggregate([
+        {
+          $match: { userId : userId }
+        },
+        {
+          $group: { _id: "$coinId", sum: { $sum: { "$toInt": "$amount"}}}
+        }
+      ])
+      .then((transaction) => {
+        if (!transaction) {
+          res
+            .status(404)
+            .send({
+              message: 'Not found transaction with the following query',
+            });
+        } else {
+          res.send(transaction);
+        }
+      })
+  }
 };
