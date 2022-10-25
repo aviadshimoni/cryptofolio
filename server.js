@@ -3,13 +3,13 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
 const path = require('path');
-
 const connectDB = require('./server/database/connection');
-
 const app = express();
-
+// load environment file
 dotenv.config({ path: 'config.env' });
 const PORT = process.env.PORT || 8080;
+
+app.use('/', require('./server/routes/router'));
 
 // log requests
 app.use(morgan('tiny'));
@@ -31,7 +31,6 @@ app.use('/img', express.static(path.resolve(__dirname, 'assets/img')));
 app.use('/js', express.static(path.resolve(__dirname, 'assets/js')));
 
 // load routers
-app.use('/', require('./server/routes/router'));
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
