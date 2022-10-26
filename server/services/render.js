@@ -12,11 +12,18 @@ exports.homeRoutes = (req, res) => {
     });
 };
 exports.login = (req, res) => {
-  res.render('login');
-};
-
-exports.locations = (req, res) => {
-  res.render('locations');
+  if (req.oidc.isAuthenticated()) {
+    axios
+      .get('http://localhost:3000/api/users')
+      .then(function (response) {
+        res.render('index', { users: response.data });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  } else {
+    res.render('login');
+  }
 };
 
 exports.add_user = (req, res) => {
