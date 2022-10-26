@@ -9,7 +9,7 @@ exports.create = (req, res) => {
 
   // new coord
   const coord = new coordModel({
-    name: req.body.name,
+    locationName: req.body.locationName,
     latitude: req.body.latitude,
     longitude: req.body.longitude,
   });
@@ -85,11 +85,9 @@ exports.get = (req, res) => {
         }
       })
       .catch((err) => {
-        res
-          .status(500)
-          .send({
-            message: 'Error retrieving coords with the following query',
-          });
+        res.status(500).send({
+          message: 'Error retrieving coords with the following query',
+        });
       });
   }
 };

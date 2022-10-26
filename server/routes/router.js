@@ -11,20 +11,18 @@ const coinData = require('../services/coin-service');
 const { auth } = require('express-openid-connect');
 
 const config = {
-    authRequired: false,
-    auth0Logout: true,
-    secret: process.env.AUTH0_SECRET,
-    baseURL: 'http://localhost:3000',
-    clientID: 'S1ucNmVM1lAUtFwQ6zm3IWh4mQ104PEv',
-    issuerBaseURL: 'https://dev-6otkihvjdof2ziuu.us.auth0.com'
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.AUTH0_SECRET,
+  baseURL: 'http://localhost:3000',
+  clientID: 'S1ucNmVM1lAUtFwQ6zm3IWh4mQ104PEv',
+  issuerBaseURL: 'https://dev-6otkihvjdof2ziuu.us.auth0.com',
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 route.use(auth(config));
 
-route.get('/', (req, res) => {
-    res.send(req.oidc.isAuthenticated() ? 'Logged In': 'Logged out');
-});
+route.get('/', services.login);
 
 /**
  *  @description add users
