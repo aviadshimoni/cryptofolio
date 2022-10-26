@@ -15,6 +15,10 @@ exports.login = (req, res) => {
   res.render('login');
 };
 
+exports.locations = (req, res) => {
+  res.render('locations');
+};
+
 exports.add_user = (req, res) => {
   res.render('add_user');
 };
