@@ -1,0 +1,29 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+<h3>Transactions Page</h3>
+<%
+var transactions = [{
+    "_id": "63517ada96c1d8a1a8466ee7",
+    "amount": 122,
+    "userId": "63517abf96c1d8a1a8466ee6",
+    "coinId": "634bfdd1a0ad3b3071f149c3", //TODO: try to replace to coinname
+    "date": "2022-12-11T22:00:00.000Z",
+    "__v": 0
+}]
+%>
+<table>
+    <tr>
+        <th>Coin</th><th>Amount</th><th>Date</th>
+    </tr>
+
+    <% for (var i = 0; i < transactions.length;  i++) { %>
+        <tr>
+            <td><%= transactions[i].coinId %></td>
+            <td><%= transactions[i].amount %></td>
+            <td><%= transactions[i].date %></td>
+        </tr>
+    <% } %>
+</table>
+
+<button class="btn-42"><span>Add New Transaction</span></button>
