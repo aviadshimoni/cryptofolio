@@ -24,6 +24,11 @@ route.use(auth(config));
 
 route.get('/', services.login);
 
+// OMER is working here
+route.get('/transactions', services.user_transactions)
+
+// MORAN is working here
+route.get('/home', services.homeRoutes);
 /**
  *  @description add users
  *  @method GET /add-user

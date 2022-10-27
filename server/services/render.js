@@ -11,6 +11,7 @@ exports.homeRoutes = (req, res) => {
       res.send(err);
     });
 };
+
 exports.login = (req, res) => {
   if (req.oidc.isAuthenticated()) {
     axios
@@ -39,4 +40,23 @@ exports.update_user = (req, res) => {
     .catch((err) => {
       res.send(err);
     });
+};
+
+// OMER
+exports.user_transactions = (req, res) => {
+  // Make a get request to /api/users
+  let tempUser = "63517abf96c1d8a1a8466ee6";
+  axios
+      .get(`http://localhost:3000/api/transactions?userId=${tempUser}`)
+      .then(function (response) {
+        res.render('transactions', { transactions: response.data });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+};
+
+// MORAN
+exports.home = (req, res) => {
+    res.render('home');
 };
