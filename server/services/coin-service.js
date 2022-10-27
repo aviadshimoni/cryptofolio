@@ -24,8 +24,6 @@ exports.getTotalPortifolioWorth = async (req, res) => {
     );
     const results = await Promise.all(
       data.map(async (item) => {
-        console.log('item :>> ', item);
-        console.log('item.coin[0].shortName :>> ', item.coin[0].shortName);
         const currentPrice = await axios.get(
           `http://localhost:3000/api/coin-price?coinSymbol=${item.coin[0].shortName}`
         );
@@ -33,8 +31,6 @@ exports.getTotalPortifolioWorth = async (req, res) => {
       })
     );
     const totalPortifolioWorth = results.reduce((b, a) => b + a, 0);
-    console.log('results :>> ', results);
-    console.log('totalPortifolioWorth :>> ', totalPortifolioWorth);
     res.send({ totalPortifolioWorth });
   } catch (err) {
     console.log('Failed');
