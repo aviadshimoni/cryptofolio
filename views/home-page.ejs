@@ -7,7 +7,6 @@
   <div class="container">
     <div class="box-nav d-flex justify-between">
       <a href="/add-user" class="border-shadow">
-        <span class="text-gradient">New User <i class="fas fa-user"></i></span>
       </a>
       <h1>Welcome back <%= user.name %></h1>
     </div>
@@ -17,16 +16,13 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th>ID</th>
             <th>Name</th>
-            <th>@Email</th>
-            <th>Gender</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th>Symbol</th>
+            <th>Amount</th>
           </tr>
         </thead>
         <tbody>
-          <%- include('include/_show') %>
+          <%- include('include/_assets') %>
         </tbody>
       </table>
     </form>
