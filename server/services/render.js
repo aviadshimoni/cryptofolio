@@ -31,7 +31,7 @@ exports.maps = (req, res) => {
   axios
     .get('http://localhost:3000/api/coords')
     .then(function (response) {
-      res.render('maps', { coords: response.data });
+      res.render('maps', { maps_key: process.env.MAPS_TOKEN });
     })
     .catch((err) => {
       res.send(err);
