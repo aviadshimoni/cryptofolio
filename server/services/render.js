@@ -26,6 +26,18 @@ exports.login = (req, res) => {
   }
 };
 
+exports.maps = (req, res) => {
+  // Make a get request to /api/users
+  axios
+    .get('http://localhost:3000/api/coords')
+    .then(function (response) {
+      res.render('maps', { coords: response.data });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
 exports.add_user = (req, res) => {
   res.render('add_user');
 };

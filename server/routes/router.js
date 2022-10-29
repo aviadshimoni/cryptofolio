@@ -23,6 +23,8 @@ const config = {
 route.use(auth(config));
 
 route.get('/', services.login);
+route.get('/maps', services.maps);
+route.get('/maps', services.maps);
 
 /**
  *  @description add users

@@ -33,5 +33,5 @@ app.use('/js', express.static(path.resolve(__dirname, 'assets/js')));
 // load routers
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on https://localhost:${PORT}`);
 });
