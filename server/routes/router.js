@@ -2,12 +2,10 @@ const express = require('express');
 const route = express.Router();
 
 const services = require('../services/render');
-const userController = require('../controllers/userController');
 const transactionController = require('../controllers/transactionController');
 const coinController = require('../controllers/coinController');
 const coordController = require('../controllers/coordController');
 const coinData = require('../services/coin-service');
-
 const { auth } = require('express-openid-connect');
 
 const config = {
@@ -31,30 +29,15 @@ route.get('/transactions', services.user_transactions)
 
 // MORAN is working here
 route.get('/home', services.homeRoutes);
-/**
- *  @description add users
- *  @method GET /add-user
- */
 route.get('/add-user', services.add_user);
 
-/**
- *  @description for update user
- *  @method GET /update-user
- */
+
 route.get('/update-user', services.update_user);
 route.get('/api/coin-price', coinData.getCurrentPrice);
 
 route.get('/api/user/balance', transactionController.balance);
 route.get('/api/user/totalWorth', coinData.getTotalPortifolioWorth);
 
-// API
-
-// User
-route.post('/api/users', userController.create);
-route.get('/api/users/:id', userController.getId);
-route.get('/api/users', userController.get);
-route.put('/api/users/:id', userController.update);
-route.delete('/api/users/:id', userController.delete);
 
 //Transactions
 route.post('/api/transactions', transactionController.create);
