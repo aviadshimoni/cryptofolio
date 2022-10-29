@@ -44,3 +44,22 @@ exports.update_user = (req, res) => {
       res.send(err);
     });
 };
+
+// OMER
+exports.user_transactions = (req, res) => {
+  // Make a get request to /api/users
+  let tempUser = 'shimoniaviad@gmail.com';
+  axios
+    .get(`http://localhost:3000/api/transactions?userEmail=${tempUser}`)
+    .then(function (response) {
+      res.render('transactions', { transactions: response.data });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+// MORAN
+exports.home = (req, res) => {
+  res.render('home');
+};

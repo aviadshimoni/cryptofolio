@@ -1,0 +1,20 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+<h3>Transactions Page Moran And Omer</h3>
+
+<table>
+    <tr>
+        <th>Coin</th><th>Amount</th><th>Date</th>
+    </tr>
+
+    <% for (var i = 0; i < transactions.length;  i++) { %>
+        <tr>
+            <td><%= transactions[i].coinId %></td>
+            <td><%= transactions[i].amount %></td>
+            <td><%= transactions[i].date %></td>
+        </tr>
+    <% } %>
+</table>
+
+<button class="btn-42"><span>Add New Transaction</span></button>

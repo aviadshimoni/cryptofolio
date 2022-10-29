@@ -19,8 +19,9 @@ exports.getCurrentPrice = (req, res) => {
 
 exports.getTotalPortifolioWorth = async (req, res) => {
   try {
+    let userEmail = req.oidc.user.email;
     const { data } = await axios.get(
-      'http://localhost:3000/api/user/balance?userId=63517abf96c1d8a1a8466ee6'
+      "http://localhost:3000/api/user/balance?email=shimoniaviad@gmail.com"
     );
     const results = await Promise.all(
       data.map(async (item) => {
@@ -33,7 +34,6 @@ exports.getTotalPortifolioWorth = async (req, res) => {
     const totalPortifolioWorth = results.reduce((b, a) => b + a, 0);
     res.send({ totalPortifolioWorth });
   } catch (err) {
-    console.log('Failed');
-    res.status(500).send({ err: 'Failed to get' });
+    res.send('0');
   }
 };

@@ -5,9 +5,8 @@ let transactionSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
+  userEmail: {
+    type: String,
     required: true,
   },
   coinId: {

@@ -7,7 +7,6 @@ const transactionController = require('../controllers/transactionController');
 const coinController = require('../controllers/coinController');
 const coordController = require('../controllers/coordController');
 const coinData = require('../services/coin-service');
-
 const { auth } = require('express-openid-connect');
 
 const config = {
@@ -24,16 +23,14 @@ route.use(auth(config));
 
 route.get('/', services.login);
 
-/**
- *  @description add users
- *  @method GET /add-user
- */
+// OMER is working here
+route.get('/transactions', services.user_transactions)
+
+// MORAN is working here
+route.get('/home', services.homeRoutes);
 route.get('/add-user', services.add_user);
 
-/**
- *  @description for update user
- *  @method GET /update-user
- */
+
 route.get('/update-user', services.update_user);
 route.get('/api/coin-price', coinData.getCurrentPrice);
 
