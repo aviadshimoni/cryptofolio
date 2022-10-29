@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     amount: req.body.amount,
     userEmail: req.oidc.user.email,
     coinId: req.body.coinId,
-    date: req.body.date,
+    date: req.body.date
   });
   transaction
     .save(transaction)

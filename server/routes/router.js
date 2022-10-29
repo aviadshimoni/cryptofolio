@@ -2,7 +2,6 @@ const express = require('express');
 const route = express.Router();
 
 const services = require('../services/render');
-const userController = require('../controllers/userController');
 const transactionController = require('../controllers/transactionController');
 const coinController = require('../controllers/coinController');
 const coordController = require('../controllers/coordController');
@@ -37,14 +36,6 @@ route.get('/api/coin-price', coinData.getCurrentPrice);
 route.get('/api/user/balance', transactionController.balance);
 route.get('/api/user/totalWorth', coinData.getTotalPortifolioWorth);
 
-// API
-
-// User
-route.post('/api/users', userController.create);
-route.get('/api/users/:id', userController.getId);
-route.get('/api/users', userController.get);
-route.put('/api/users/:id', userController.update);
-route.delete('/api/users/:id', userController.delete);
 
 //Transactions
 route.post('/api/transactions', transactionController.create);
