@@ -15,7 +15,7 @@ exports.homeRoutes = (req, res) => {
 exports.login = (req, res) => {
   if (req.oidc.isAuthenticated()) {
     axios
-      .get('http://localhost:3000/api/users')
+      .get(`http://localhost:3000/api/users`)
       .then(function (response) {
         res.render('index', { users: response.data });
       })
@@ -45,9 +45,9 @@ exports.update_user = (req, res) => {
 // OMER
 exports.user_transactions = (req, res) => {
   // Make a get request to /api/users
-  let tempUser = "63517abf96c1d8a1a8466ee6";
+  let tempUser = "shimoniaviad@gmail.com";
   axios
-      .get(`http://localhost:3000/api/transactions?userId=${tempUser}`)
+      .get(`http://localhost:3000/api/transactions?userEmail=${tempUser}`)
       .then(function (response) {
         res.render('transactions', { transactions: response.data });
       })

@@ -9,7 +9,7 @@ exports.create = (req, res) => {
 
   const transaction = new transactionModel({
     amount: req.body.amount,
-    userId: req.body.userId,
+    userEmail: req.oidc.user.email,
     coinId: req.body.coinId,
     date: req.body.date,
   });
@@ -44,7 +44,7 @@ exports.getId = (req, res) => {
     .catch((err) => {
       res
         .status(500)
-        .send({ message: 'Error retrieving transaction with id ' + id });
+        .send({ message: 'Error retrieving transaction with id ' + id + '\nError: ' + err});
     });
 };
 
@@ -65,12 +65,12 @@ exports.get = (req, res) => {
       });
   } else {
     let parsedQuery = {};
-    const userId = query.userId;
+    const userEmail = query.userEmail;
     const coinId = query.coinId;
     let fromDate = query.fromDate;
     let toDate = query.toDate;
-    if (userId) {
-      parsedQuery['userId'] = userId;
+    if (userEmail) {
+      parsedQuery['userEmail'] = userEmail;
     }
     if (coinId) {
       parsedQuery['coinId'] = coinId;
@@ -165,13 +165,13 @@ exports.delete = (req, res) => {
 exports.balance = (req, res) => {
   const query = req.query;
   if (Object.keys(query).length === 0) {
-    res.status(500).send("empty userId")
+    res.status(500).send("empty email")
   } else {
-    const userId =  new mongoose.Types.ObjectId(query.userId);
+    const email =  new mongoose.Types.ObjectId(query.email);
     transactionModel
         .aggregate([
           {
-            $match: { userId : userId }
+            $match: { email : email }
           },
           {
             $group: { _id: "$coinId",amount: { $sum: { "$toInt": "$amount"}}}
