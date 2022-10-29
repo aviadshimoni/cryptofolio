@@ -18,13 +18,13 @@ exports.login = async (req, res) => {
       const { data } = await axios.get(
         `http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`
       );
-      // const totalPortifolioWorth = await axios.get(
-      //   `http://localhost:3000/api/user/totalWorth`
-      // );
-      // console.log('totalPortifolioWorth :>> ', totalPortifolioWorth.data);
+      const totalPortifolioWorth = await axios.get(
+        `http://localhost:3000/api/user/totalWorth?userEmail=${req.oidc.user.email}`
+      );
+
       res.render('home-page', {
         assets: data,
-        // totalPortifolioWorth,
+        totalPortifolioWorth: totalPortifolioWorth.data,
         user: req.oidc.user,
       });
     } else {
