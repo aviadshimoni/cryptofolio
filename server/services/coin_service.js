@@ -36,6 +36,6 @@ exports.getTotalPortifolioWorth = async (req, res) => {
     res.send({ totalPortifolioWorth });
   } catch (err) {
     console.error(err);
-    res.send('0');
+    res.send(err);
   }
 };

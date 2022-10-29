@@ -5,7 +5,7 @@ const services = require('../services/render');
 const transactionController = require('../controllers/transactionController');
 const coinController = require('../controllers/coinController');
 const coordController = require('../controllers/coordController');
-const coinData = require('../services/coin-service');
+const coinData = require('../services/coin_service');
 const { auth } = require('express-openid-connect');
 
 const config = {
@@ -21,7 +21,6 @@ const config = {
 route.use(auth(config));
 
 route.get('/', services.login);
-route.get('/maps', services.maps);
 route.get('/maps', services.maps);
 
 // OMER is working here

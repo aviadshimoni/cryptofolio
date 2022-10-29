@@ -1,6 +1,6 @@
 const transactionModel = require('../models/transaction');
 const mongoose = require('mongoose');
-const coinService = require('../services/coin-service');
+const coinService = require('../services/coin_service');
 
 exports.create = (req, res) => {
   if (!req.body) {
@@ -135,7 +135,6 @@ exports.update = (req, res) => {
     });
 };
 
-//// Delete a user with specified user id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
