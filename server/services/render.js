@@ -12,18 +12,26 @@ exports.homeRoutes = (req, res) => {
     });
 };
 
-exports.login = (req, res) => {
-  if (req.oidc.isAuthenticated()) {
-    axios
-      .get(`http://localhost:3000/api/users`)
-      .then(function (response) {
-        res.render('index', { users: response.data });
-      })
-      .catch((err) => {
-        res.send(err);
+exports.login = async (req, res) => {
+  try {
+    if (req.oidc.isAuthenticated()) {
+      const { data } = await axios.get(
+        `http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`
+      );
+      // const totalPortifolioWorth = await axios.get(
+      //   `http://localhost:3000/api/user/totalWorth`
+      // );
+      // console.log('totalPortifolioWorth :>> ', totalPortifolioWorth.data);
+      res.render('home-page', {
+        assets: data,
+        // totalPortifolioWorth,
+        user: req.oidc.user,
       });
-  } else {
-    res.render('login');
+    } else {
+      res.render('login');
+    }
+  } catch (e) {
+    console.log(e);
   }
 };
 
@@ -45,18 +53,18 @@ exports.update_user = (req, res) => {
 // OMER
 exports.user_transactions = (req, res) => {
   // Make a get request to /api/users
-  let tempUser = "shimoniaviad@gmail.com";
+  let tempUser = 'shimoniaviad@gmail.com';
   axios
-      .get(`http://localhost:3000/api/transactions?userEmail=${tempUser}`)
-      .then(function (response) {
-        res.render('transactions', { transactions: response.data });
-      })
-      .catch((err) => {
-        res.send(err);
-      });
+    .get(`http://localhost:3000/api/transactions?userEmail=${tempUser}`)
+    .then(function (response) {
+      res.render('transactions', { transactions: response.data });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 };
 
 // MORAN
 exports.home = (req, res) => {
-    res.render('home');
+  res.render('home');
 };

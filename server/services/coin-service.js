@@ -19,9 +19,9 @@ exports.getCurrentPrice = (req, res) => {
 
 exports.getTotalPortifolioWorth = async (req, res) => {
   try {
-    let userEmail = req.oidc.user.email;
+    const userEmail = req.oidc.user.email;
     const { data } = await axios.get(
-      "http://localhost:3000/api/user/balance?email=shimoniaviad@gmail.com"
+      `http://localhost:3000/api/user/balance?userEmail=${userEmail}`
     );
     const results = await Promise.all(
       data.map(async (item) => {
