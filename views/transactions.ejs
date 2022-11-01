@@ -5,16 +5,18 @@
     <!-- Main Site -->
     <main id="site-main">
         <div class="container">
-            <div class="box-nav d-flex justify-between">
-              <h1>Welcome back <%= user.name %></h1> 
+            <div class="jumbotron">
+                <h1>
+                    <%= user.name %> Transactions Page
+                </h1>
+                <p>Latest Transactions</p>
             </div>
-        
-        <!-- body handling -->
-        <body>
+            <!-- body handling -->
+            <form action="/" method="POST">
 
                 <div class="table-responsive">
                     <table class="table">
-                        <thead class="table-light">
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Coin</th>
                                 <th>Amount</th>
@@ -37,7 +39,12 @@
                                 <% } %>
                         </tbody>
                     </table>
-
-                    <button class="btn-42"><span>Add New Transaction</span></button>
-        </body>
+                    <a href="/add-transaction" class="border-shadow">
+                        <button type="button" class="btn btn-primary btn-lg btn-block">Add New Transaction</button>
+                    </a>
+            </form>
     </main>
+
+    <!-- include footer -->
+    <%- include('include/_footer') %>
+        <!-- /include footer -->

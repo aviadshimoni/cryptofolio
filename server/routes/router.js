@@ -25,6 +25,7 @@ route.get('/maps', services.maps);
 
 // OMER is working here
 route.get('/transactions', services.user_transactions)
+route.get('/add-transaction', services.add_transaction);
 
 // MORAN is working here
 route.get('/home', services.homeRoutes);
