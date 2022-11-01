@@ -57,9 +57,9 @@ exports.update_user = (req, res) => {
 // OMER
 exports.user_transactions = (req, res) => {
   // Make a get request to /api/users
-  let tempUser = 'shimoniaviad@gmail.com';
+  //let tempUser = 'shimoniaviad@gmail.com';
   axios
-    .get(`http://localhost:3000/api/transactions?userEmail=${tempUser}`)
+    .get(`http://localhost:3000/api/transactions?userEmail=${req.oidc.user.email}`)
     .then(function (response) {
       res.render('transactions', { transactions: response.data });
     })
