@@ -6,16 +6,8 @@ const adminMails = [
   'adirbu98@gmail.com',
 ];
 
-exports.coin_manager = (req, res) => {
-  // Make a get request to /api/users
-  axios
-    .get('http://localhost:3000/api/coins')
-    .then(function (response) {
-      res.render('coin_manager', { coins: response.data });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+const isAdmin = (email) => {
+  return adminMails.includes(email);
 };
 
 exports.user_home = async (req, res) => {
@@ -27,7 +19,7 @@ exports.user_home = async (req, res) => {
       const totalPortifolioWorth = await axios.get(
         `http://localhost:3000/api/user/totalWorth?userEmail=${req.oidc.user.email}`
       );
-      res.render('home-page', {
+      res.render('user_home', {
         assets: data,
         totalPortifolioWorth: totalPortifolioWorth.data,
         user: req.oidc.user,
@@ -43,36 +35,6 @@ exports.user_home = async (req, res) => {
 
 exports.maps = (req, res) => {
   res.render('maps', { maps_key: process.env.MAPS_TOKEN });
-};
-
-exports.add_coord = (req, res) => {
-  res.render('add_coord');
-};
-
-exports.update_coord = async (req, res) => {
-  axios
-      .get(`http://localhost:3000/api/coords/${req.query.id}`)
-      .then(function (coorddata) {
-        res.render('update_coord', { coord: coorddata.data });
-      })
-      .catch((err) => {
-        res.send(err);
-      });
-};
-
-exports.add_coin = (req, res) => {
-  res.render('add_coin');
-};
-
-exports.update_coin = (req, res) => {
-  axios
-    .get('http://localhost:3000/api/coins', { params: { id: req.query.id } })
-    .then(function (coindata) {
-      res.render('update_coin', { coin: coindata.data });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
 };
 
 // OMER
@@ -94,23 +56,12 @@ exports.home = (req, res) => {
   res.render('home');
 };
 
+
 exports.admin_page = (req, res) => {
   if (isAdmin(req.oidc.user.email)) {
-    res.render('admin-page');
+    res.render('admin_page');
   } else {
     res.render('home');
   }
 };
 
-exports.coord_manager = async (req, res) => {
-  try {
-    const { data } = await axios.get('http://localhost:3000/api/coords');
-    res.render('coord_manager', { coords: data });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const isAdmin = (email) => {
-  return adminMails.includes(email);
-};
