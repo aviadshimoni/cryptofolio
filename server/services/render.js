@@ -1,5 +1,11 @@
 const axios = require('axios');
 
+const adminMails = [
+  'shimoniaviad@gmail.com',
+  'tzvika.tubis@gmail.com',
+  'adirbu98@gmail.com',
+];
+
 exports.homeRoutes = (req, res) => {
   // Make a get request to /api/users
   axios
@@ -12,7 +18,7 @@ exports.homeRoutes = (req, res) => {
     });
 };
 
-exports.login = async (req, res) => {
+exports.user_home = async (req, res) => {
   try {
     if (req.oidc.isAuthenticated()) {
       const { data } = await axios.get(
@@ -21,11 +27,11 @@ exports.login = async (req, res) => {
       const totalPortifolioWorth = await axios.get(
         `http://localhost:3000/api/user/totalWorth?userEmail=${req.oidc.user.email}`
       );
-
       res.render('home-page', {
         assets: data,
         totalPortifolioWorth: totalPortifolioWorth.data,
         user: req.oidc.user,
+        isAdmin: adminMails.includes(req.oidc.user.email),
       });
     } else {
       res.render('login');
@@ -72,3 +78,30 @@ exports.user_transactions = (req, res) => {
 exports.home = (req, res) => {
   res.render('home');
 };
+
+exports.admin_page = (req, res) => {
+  res.render('admin-page');
+};
+
+// exports.admin_page = async (req, res) => {
+//   try {
+//     if () {
+//       const { data } = await axios.get(
+//         `http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`
+//       );
+//       const totalPortifolioWorth = await axios.get(
+//         `http://localhost:3000/api/user/totalWorth?userEmail=${req.oidc.user.email}`
+//       );
+
+//       res.render('home-page', {
+//         assets: data,
+//         totalPortifolioWorth: totalPortifolioWorth.data,
+//         user: req.oidc.user,
+//       });
+//     } else {
+//       res.render('login');
+//     }
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };

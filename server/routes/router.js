@@ -20,23 +20,22 @@ const config = {
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 route.use(auth(config));
 
-route.get('/', services.login);
+route.get('/', services.user_home);
 route.get('/maps', services.maps);
+route.get('/admin', services.admin_page);
 
 // OMER is working here
-route.get('/transactions', services.user_transactions)
+route.get('/transactions', services.user_transactions);
 
 // MORAN is working here
 route.get('/home', services.homeRoutes);
 route.get('/add-user', services.add_user);
-
 
 route.get('/update-user', services.update_user);
 route.get('/api/coin-price', coinData.getCurrentPrice);
 
 route.get('/api/user/balance', transactionController.balance);
 route.get('/api/user/totalWorth', coinData.getTotalPortifolioWorth);
-
 
 //Transactions
 route.post('/api/transactions', transactionController.create);

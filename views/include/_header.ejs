@@ -18,6 +18,13 @@
                         <a href="/" class="nav-brand text-dark">Cryptofolio</a>
                     </div>
                 </div>
+                <% if(locals.isAdmin) { %>
+                    <ul class="navbar-nav mr-auto mx-auto">
+                        <li class="nav-item">
+                            <a href="/admin" class="btn" role="button">ADMIN DASHBOARD</a>
+                        </li>
+                    </ul>
+                <% } %>
             </nav>
         </header>
     <!-- /Header -->

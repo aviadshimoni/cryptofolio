@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const path = require('path');
 const connectDB = require('./server/database/connection');
+const bodyParser = require('body-parser');
 const app = express();
 // load environment file
 dotenv.config({ path: 'config.env' });
@@ -13,8 +14,11 @@ app.use(morgan('tiny'));
 
 // mongodb connection
 connectDB();
-
-app.use(express.json());
+app.use(bodyParser.json()).use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 // set view engine
 app.set('view engine', 'ejs');
