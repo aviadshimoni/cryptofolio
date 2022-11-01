@@ -28,10 +28,12 @@ route.get('/admin', services.admin_page);
 route.get('/transactions', services.user_transactions);
 
 // MORAN is working here
-route.get('/home', services.homeRoutes);
-route.get('/add-user', services.add_user);
+// route.get('/home', services.homeRoutes);
 
-route.get('/update-user', services.update_user);
+route.get('/admin/coin-manager', services.coin_manager);
+route.get('/admin/coin-manager/add-coin', services.add_coin);
+route.get('/admin/coin-manager/update-coin', services.update_coin);
+
 route.get('/api/coin-price', coinData.getCurrentPrice);
 
 route.get('/api/user/balance', transactionController.balance);

@@ -6,12 +6,12 @@ const adminMails = [
   'adirbu98@gmail.com',
 ];
 
-exports.homeRoutes = (req, res) => {
+exports.coin_manager = (req, res) => {
   // Make a get request to /api/users
   axios
-    .get('http://localhost:3000/api/users')
+    .get('http://localhost:3000/api/coins')
     .then(function (response) {
-      res.render('index', { users: response.data });
+      res.render('coin_manager', { coins: response.data });
     })
     .catch((err) => {
       res.send(err);
@@ -45,15 +45,15 @@ exports.maps = (req, res) => {
   res.render('maps', { maps_key: process.env.MAPS_TOKEN });
 };
 
-exports.add_user = (req, res) => {
-  res.render('add_user');
+exports.add_coin = (req, res) => {
+  res.render('add_coin');
 };
 
-exports.update_user = (req, res) => {
+exports.update_coin = (req, res) => {
   axios
-    .get('http://localhost:3000/api/users', { params: { id: req.query.id } })
-    .then(function (userdata) {
-      res.render('update_user', { user: userdata.data });
+    .get('http://localhost:3000/api/coins', { params: { id: req.query.id } })
+    .then(function (coindata) {
+      res.render('update_coin', { coin: coindata.data });
     })
     .catch((err) => {
       res.send(err);
