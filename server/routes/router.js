@@ -26,12 +26,15 @@ route.get('/admin', services.admin_page);
 
 // OMER is working here
 route.get('/transactions', services.user_transactions);
+route.get('/admin/coord-manager', services.coord_manager);
+route.get('/admin/coord-manager/add-coord', services.add_coord);
+route.get('/admin/coord-manager/update-coord', services.update_coord);
 
 // MORAN is working here
 route.get('/home', services.homeRoutes);
-route.get('/add-user', services.add_user);
+// route.get('/add-user', services.add_user);
 
-route.get('/update-user', services.update_user);
+// route.get('/update-user', services.update_user);
 route.get('/api/coin-price', coinData.getCurrentPrice);
 
 route.get('/api/user/balance', transactionController.balance);

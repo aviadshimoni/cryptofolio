@@ -31,7 +31,7 @@ exports.user_home = async (req, res) => {
         assets: data,
         totalPortifolioWorth: totalPortifolioWorth.data,
         user: req.oidc.user,
-        isAdmin: adminMails.includes(req.oidc.user.email),
+        isAdmin: isAdmin(req.oidc.user.email),
       });
     } else {
       res.render('login');
@@ -45,15 +45,15 @@ exports.maps = (req, res) => {
   res.render('maps', { maps_key: process.env.MAPS_TOKEN });
 };
 
-exports.add_user = (req, res) => {
-  res.render('add_user');
+exports.add_coord = (req, res) => {
+  res.render('add_coord');
 };
 
-exports.update_user = (req, res) => {
+exports.update_coord = async (req, res) => {
   axios
-    .get('http://localhost:3000/api/users', { params: { id: req.query.id } })
-    .then(function (userdata) {
-      res.render('update_user', { user: userdata.data });
+    .get(`http://localhost:3000/api/coords/${req.query.id}`)
+    .then(function (coorddata) {
+      res.render('update_coord', { coord: coorddata.data });
     })
     .catch((err) => {
       res.send(err);
@@ -80,7 +80,24 @@ exports.home = (req, res) => {
 };
 
 exports.admin_page = (req, res) => {
-  res.render('admin-page');
+  if (isAdmin(req.oidc.user.email)) {
+    res.render('admin-page');
+  } else {
+    res.render('home');
+  }
+};
+
+exports.coord_manager = async (req, res) => {
+  try {
+    const { data } = await axios.get('http://localhost:3000/api/coords');
+    res.render('coord_manager', { coords: data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const isAdmin = (email) => {
+  return adminMails.includes(email);
 };
 
 // exports.admin_page = async (req, res) => {
