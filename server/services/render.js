@@ -31,7 +31,7 @@ exports.user_home = async (req, res) => {
         assets: data,
         totalPortifolioWorth: totalPortifolioWorth.data,
         user: req.oidc.user,
-        isAdmin: adminMails.includes(req.oidc.user.email),
+        isAdmin: isAdmin(req.oidc.user.email),
       });
     } else {
       res.render('login');
@@ -43,6 +43,21 @@ exports.user_home = async (req, res) => {
 
 exports.maps = (req, res) => {
   res.render('maps', { maps_key: process.env.MAPS_TOKEN });
+};
+
+exports.add_coord = (req, res) => {
+  res.render('add_coord');
+};
+
+exports.update_coord = async (req, res) => {
+  axios
+      .get(`http://localhost:3000/api/coords/${req.query.id}`)
+      .then(function (coorddata) {
+        res.render('update_coord', { coord: coorddata.data });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
 };
 
 exports.add_coin = (req, res) => {
@@ -80,28 +95,22 @@ exports.home = (req, res) => {
 };
 
 exports.admin_page = (req, res) => {
-  res.render('admin-page');
+  if (isAdmin(req.oidc.user.email)) {
+    res.render('admin-page');
+  } else {
+    res.render('home');
+  }
 };
 
-// exports.admin_page = async (req, res) => {
-//   try {
-//     if () {
-//       const { data } = await axios.get(
-//         `http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`
-//       );
-//       const totalPortifolioWorth = await axios.get(
-//         `http://localhost:3000/api/user/totalWorth?userEmail=${req.oidc.user.email}`
-//       );
+exports.coord_manager = async (req, res) => {
+  try {
+    const { data } = await axios.get('http://localhost:3000/api/coords');
+    res.render('coord_manager', { coords: data });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-//       res.render('home-page', {
-//         assets: data,
-//         totalPortifolioWorth: totalPortifolioWorth.data,
-//         user: req.oidc.user,
-//       });
-//     } else {
-//       res.render('login');
-//     }
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
+const isAdmin = (email) => {
+  return adminMails.includes(email);
+};
