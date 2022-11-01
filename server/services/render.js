@@ -61,7 +61,9 @@ exports.user_transactions = (req, res) => {
   axios
     .get(`http://localhost:3000/api/transactions?userEmail=${req.oidc.user.email}`)
     .then(function (response) {
-      res.render('transactions', { transactions: response.data });
+      res.render('transactions', { 
+        transactions: response.data ,
+        user: req.oidc.user,});
     })
     .catch((err) => {
       res.send(err);
