@@ -1,0 +1,52 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+
+<!-- Main Site -->
+<main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+            <a href="/admin/coin-manager/add-coin" class="border-shadow">
+                <span class="text-gradient">Add New Coin <i class="fas fa-user"></i></span>
+            </a>
+        </div>
+
+        <!-- form handling -->
+        <form action="/" method="POST">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Coin Name</th>
+                    <th>Coin Short Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(var i = 0; i < coins.length; i++) { %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= coins[i].name %></td>
+                        <td><%= coins[i].shortName %></td>
+                        <td>
+                            <a href="/admin/coin-manager/update-coin?id=<%= coins[i]._id%>" class="btn border-shadow update">
+                                <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                            </a>
+                            <a class="btn border-shadow delete" data-id=<%= coins[i]._id%> >
+                                <span class="text-gradient"><i class="fas fa-times"></i></span>
+                            </a>
+                        </td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</main>
+<!-- /Main Site -->
+
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

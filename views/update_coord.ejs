@@ -1,0 +1,51 @@
+
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+  <!-- Main Site -->
+  <main id="site-main">
+    <div class="container">
+        <div class="box-nav d-flex justify-between">
+           <div class="filter">
+               <a href="/admin/coord-manager"><i class="fas fa-angle-double-left"></i> All Coordinates</a>
+           </div>
+        </div>
+        <div class="form-title text-center">
+            <h2 class="text-dark">Update Coord</h2>
+            <span class="text-light">Use the below form to Update an coordinates</span>
+        </div>
+
+        <!-- add coord form -->
+         <!-- form handling -->
+ <form method="POST" id="update_coord">
+    <div class="new_coord">
+        <div class="form-group">
+            <label for="locationName" class="text-light">Location Name</label>
+            <input type="hidden" name="id" value="<%= coord._id %>">
+            <input type="text" name="locationName" value="<%= coord.locationName %>" placeholder="ie: Bits of Gold">
+        </div>
+        <div class="form-group">
+            <label for="latitude" class="text-light">Latitude</label>
+            <input type="text" name="latitude" value="<%= coord.latitude%>" placeholder="32.45454">
+        </div>
+        <div class="form-group">
+            <label for="longitude" class="text-light">Longitude</label>
+            <input type="text" name="longitude" value="<%= coord.longitude%>" placeholder="21.456432">
+        </div>
+       
+
+        <div class="form-group">
+            <button type="submit" class="btn text-dark update">Save</button>
+        </div>
+
+    </div>
+</form>
+       
+    </div>
+</main>
+<!-- /Main Site -->
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

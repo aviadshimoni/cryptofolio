@@ -1,0 +1,10 @@
+<% for(var i = 0; i < assets.length; i++) { %>
+    <tr>
+        <td>
+            <img src="https://github.com/ErikThiart/cryptocurrency-icons/blob/master/icons/<%= assets[i].coin[0].icon %>.png?raw=true"/>
+            <%= assets[i].coin[0].shortName %>
+        </td>
+        <td><%= assets[i].coin[0].name %></td>
+        <td><%= assets[i].amount %></td>
+    </tr>
+    <% } %>
