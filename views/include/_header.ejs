@@ -16,7 +16,7 @@
     <header class="site-header">
         <div class="wrapper site-header__wrapper">
             <div class="site-header__start">
-                <a href="#" class="brand">Brand</a>
+                <a href="/" class="brand">Cryptofolio</a>
             </div>
             <div class="site-header__middle">
                 <nav class="nav">
@@ -24,18 +24,20 @@
                         menu
                     </button>
                     <ul class="nav__wrapper">
-                        <li class="nav__item"><a href="#">Home</a></li>
-                        <li class="nav__item"><a href="#">About</a></li>
+                        <li class="nav__item"><a href="/">Home</a></li>
+                        <li class="nav__item"><a href="/about">About</a></li>
                         <li class="nav__item"><a href="/transactions">Transactions</a></li>
                         <li class="nav__item"><a href="/maps">Local Crypto Exchanges</a></li>
                         <li class="nav__item"><a href="/maps">Statistics</a></li>
-                        <li class="nav__item"><a href="#">Contact</a></li>
-
+                        <li class="nav__item"><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="site-header__end">
                 <a class="button" href="/logout">Sign out</a>
+                <% if(locals.isAdmin) { %>
+                <a class="button" href="/admin">Admin Page</a>
+                <% } %>
             </div>
         </div>
     </header>
