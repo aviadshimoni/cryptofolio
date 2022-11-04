@@ -1,18 +1,16 @@
 const axios = require('axios');
 
-exports.homeRoutes = (req, res) => {
-  // Make a get request to /api/users
-  axios
-    .get('http://localhost:3000/api/users')
-    .then(function (response) {
-      res.render('index', { users: response.data });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+const adminMails = [
+  'shimoniaviad@gmail.com',
+  'tzvika.tubis@gmail.com',
+  'adirbu98@gmail.com',
+];
+
+const isAdmin = (email) => {
+  return adminMails.includes(email);
 };
 
-exports.login = async (req, res) => {
+exports.user_home = async (req, res) => {
   try {
     if (req.oidc.isAuthenticated()) {
       const { data } = await axios.get(
@@ -21,11 +19,11 @@ exports.login = async (req, res) => {
       const totalPortifolioWorth = await axios.get(
         `http://localhost:3000/api/user/totalWorth?userEmail=${req.oidc.user.email}`
       );
-
-      res.render('home-page', {
+      res.render('user_home', {
         assets: data,
         totalPortifolioWorth: totalPortifolioWorth.data,
         user: req.oidc.user,
+        isAdmin: isAdmin(req.oidc.user.email),
       });
     } else {
       res.render('login');
@@ -37,21 +35,6 @@ exports.login = async (req, res) => {
 
 exports.maps = (req, res) => {
   res.render('maps', { maps_key: process.env.MAPS_TOKEN });
-};
-
-exports.add_user = (req, res) => {
-  res.render('add_user');
-};
-
-exports.update_user = (req, res) => {
-  axios
-    .get('http://localhost:3000/api/users', { params: { id: req.query.id } })
-    .then(function (userdata) {
-      res.render('update_user', { user: userdata.data });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
 };
 
 // OMER
@@ -72,3 +55,13 @@ exports.user_transactions = (req, res) => {
 exports.home = (req, res) => {
   res.render('home');
 };
+
+
+exports.admin_page = (req, res) => {
+  if (isAdmin(req.oidc.user.email)) {
+    res.render('admin_page');
+  } else {
+    res.render('home');
+  }
+};
+
