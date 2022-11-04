@@ -26,7 +26,7 @@ exports.user_home = async (req, res) => {
         isAdmin: isAdmin(req.oidc.user.email),
       });
     } else {
-      res.render('login');
+      res.render('index');
     }
   } catch (e) {
     console.log(e);
@@ -51,9 +51,8 @@ exports.user_transactions = (req, res) => {
     });
 };
 
-// MORAN
-exports.home = (req, res) => {
-  res.render('home');
+exports.index = (req, res) => {
+  res.render('index');
 };
 
 

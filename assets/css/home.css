@@ -5,10 +5,10 @@
     font-family: 'poppins', sans-serif;
 }
 
-.heder{
+.header{
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(126, 133, 132, 0.5),rgba(5, 3, 77, 0.5)),url(../login-reg-img/b5.jpg);
+    background-image: linear-gradient(rgba(126, 133, 132, 0.5),rgba(5, 3, 77, 0.5)),url(../img/b5.jpg);
     background-position: center;
     background-size: cover;
     overflow-x: hidden;
@@ -136,6 +136,6 @@ p.slide-left{
 }
 
 .links.slide-left{
-    animation-delay: 1.23s;
+    text-align: center;
 }
 
