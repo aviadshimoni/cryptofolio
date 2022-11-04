@@ -5,19 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cryptofolio</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <!-- Header -->
-        <header id="header">
-            <nav>
-                <div class="container">
-                    <div class="text-center">
-                        <a href="/" class="nav-brand text-dark">Cryptofolio</a>
-                    </div>
-                </div>
-            </nav>
-        </header>
+    <!-- Header Start -->
+    <header class="site-header">
+        <div class="wrapper site-header__wrapper">
+            <div class="site-header__start">
+                <a href="#" class="brand">Brand</a>
+            </div>
+            <div class="site-header__middle">
+                <nav class="nav">
+                    <button class="nav__toggle" aria-expanded="false" type="button">
+                        menu
+                    </button>
+                    <ul class="nav__wrapper">
+                        <li class="nav__item"><a href="#">Home</a></li>
+                        <li class="nav__item"><a href="#">About</a></li>
+                        <li class="nav__item"><a href="/transactions">Transactions</a></li>
+                        <li class="nav__item"><a href="/maps">Local Crypto Exchanges</a></li>
+                        <li class="nav__item"><a href="/maps">Statistics</a></li>
+                        <li class="nav__item"><a href="#">Contact</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="site-header__end">
+                <a class="button" href="/logout">Sign out</a>
+            </div>
+        </div>
+    </header>
+    <script src="js/header.js"></script>
+</body>
+</html>
     <!-- /Header -->
