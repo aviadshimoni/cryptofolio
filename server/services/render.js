@@ -60,7 +60,7 @@ exports.admin_page = (req, res) => {
   if (isAdmin(req.oidc.user.email)) {
     res.render('admin_page');
   } else {
-    res.render('home');
+    res.render('index');
   }
 };
 
