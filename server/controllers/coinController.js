@@ -1,9 +1,10 @@
 const coinModel = require('../models/coin');
+const axios = require("axios");
 
 exports.create = (req, res) => {
   // validate request
   if (!req.body) {
-    res.status(400).send({ message: 'Content can not be emtpy!' });
+    res.status(400).send({ message: 'Content can not be empty!' });
     return;
   }
 
@@ -19,15 +20,17 @@ exports.create = (req, res) => {
     .save(coin)
     .then((data) => {
       res.status(200);
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message ||
-          'Some error occurred while creating a create operation',
+      res.redirect('/admin/coin-manager');
+     })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+              err.message ||
+              'Some error occurred while creating a create operation',
+        });
       });
-    });
+      // TODO: add before test
+      // then(axios.get(`http://localhost:3000/api/twitter?coinName=${req.body.name}`)
 };
 
 exports.getId = (req, res) => {
