@@ -51,6 +51,28 @@ exports.user_transactions = (req, res) => {
     });
 };
 
+exports.user_stats = (req, res) => {
+  // Make a get request to /api/users
+  let tempUser = 'adirbu98@gmail.com';
+  axios
+    .get(`http://localhost:3000/api/user/balance?userEmail=${tempUser}`)
+    .then(function (response) {
+      var balance = response.data;
+      var data = {}
+      var keys= []
+      for(var i=0; i<balance.length;i++) {
+        data[balance[i].coin[0].shortName]=balance[i].amount;
+        keys.push(balance[i].coin[0].shortName)
+      }
+      console.log(data);
+      console.log(keys);
+      res.render('stats', { balance: JSON.stringify(data), keys: JSON.stringify(keys) });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
 exports.index = (req, res) => {
   res.render('index');
 };

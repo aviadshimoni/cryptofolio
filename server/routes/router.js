@@ -26,7 +26,7 @@ route.get('/maps', services.maps);
 
 // OMER is working here
 route.get('/transactions', services.user_transactions);
-
+route.get('/stats', services.user_stats);
 
 
 // MORAN is working here
