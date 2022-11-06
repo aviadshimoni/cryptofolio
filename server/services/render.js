@@ -4,6 +4,7 @@ const adminMails = [
   'shimoniaviad@gmail.com',
   'tzvika.tubis@gmail.com',
   'adirbu98@gmail.com',
+  'omer5574@gmail.com',
 ];
 
 const isAdmin = (email) => {
@@ -46,36 +47,20 @@ exports.maps = (req, res) => {
 };
 
 // OMER
-exports.user_transactions = (req, res) => {
-  // Make a get request to /api/users
-  let tempUser = 'shimoniaviad@gmail.com';
-  axios
-    .get(`http://localhost:3000/api/transactions?userEmail=${tempUser}`)
-    .then(function (response) {
-      res.render('transactions', { transactions: response.data });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-};
-
-exports.user_stats = (req, res) => {
+exports.user_transactions = async (req, res) => {
   try {
     if (req.oidc.isAuthenticated()) {
-      axios
-      .get(`http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`)
-      .then(function (response) {
-        var balance = response.data;
-        var data = {}
-        var keys= []
-        for(var i=0; i<balance.length;i++) {
-          data[balance[i].coin[0].shortName]=balance[i].amount;
-          keys.push(balance[i].coin[0].shortName)
-        }
-        res.render('stats', { balance: JSON.stringify(data), keys: JSON.stringify(keys) });
-      })
-      .catch((err) => {
-        res.send(err);
+      const { data } = await axios.get(
+        `http://localhost:3000/api/transactions?userEmail=${req.oidc.user.email}`
+      );
+      const { assets } = await axios.get(
+        `http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`
+      );
+      res.render('transactions', {
+        transactions: data,
+        assets: assets,
+        user: req.oidc.user,
+        // isAdmin: isAdmin(req.oidc.user.email),
       });
     } else {
       res.render('index');
@@ -83,10 +68,6 @@ exports.user_stats = (req, res) => {
   } catch (e) {
     console.log(e);
   }
-};
-
-exports.index = (req, res) => {
-  res.render('index');
 };
 
 

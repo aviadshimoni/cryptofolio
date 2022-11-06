@@ -45,7 +45,7 @@ exports.getId = (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send({ message: 'Error retrieving coin with id ' + id });
+      res.status(500).send({ message: 'Error retrieving coin with id ' + id + ', Error:' + err.message});
     });
 };
 
