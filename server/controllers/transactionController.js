@@ -195,3 +195,24 @@ exports.balance = (req, res) => {
       });
   }
 };
+
+exports.usersStats = (req, res) => {
+  transactionModel
+    .aggregate([
+      {
+        $group: {
+          _id: '$userEmail',
+          amount: { $sum: 1 },
+        },
+      },
+    ])
+    .then((transaction) => {
+      if (!transaction) {
+        res.status(404).send({
+          message: 'Not found transaction',
+        });
+      } else {
+        res.send(transaction);
+      }
+    });
+};

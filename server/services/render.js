@@ -19,11 +19,19 @@ exports.user_home = async (req, res) => {
       const totalPortifolioWorth = await axios.get(
         `http://localhost:3000/api/user/totalWorth?userEmail=${req.oidc.user.email}`
       );
+      var balance = {}
+      var keys= []
+      for(var i=0; i<data.length;i++) {
+        balance[data[i].coin[0].shortName]=data[i].amount;
+        keys.push(data[i].coin[0].shortName)
+      }
       res.render('user_home', {
         assets: data,
         totalPortifolioWorth: totalPortifolioWorth.data,
         user: req.oidc.user,
         isAdmin: isAdmin(req.oidc.user.email),
+        balance: JSON.stringify(balance),
+        keys: JSON.stringify(keys),
       });
     } else {
       res.render('index');
@@ -52,25 +60,29 @@ exports.user_transactions = (req, res) => {
 };
 
 exports.user_stats = (req, res) => {
-  // Make a get request to /api/users
-  let tempUser = 'adirbu98@gmail.com';
-  axios
-    .get(`http://localhost:3000/api/user/balance?userEmail=${tempUser}`)
-    .then(function (response) {
-      var balance = response.data;
-      var data = {}
-      var keys= []
-      for(var i=0; i<balance.length;i++) {
-        data[balance[i].coin[0].shortName]=balance[i].amount;
-        keys.push(balance[i].coin[0].shortName)
-      }
-      console.log(data);
-      console.log(keys);
-      res.render('stats', { balance: JSON.stringify(data), keys: JSON.stringify(keys) });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+  try {
+    if (req.oidc.isAuthenticated()) {
+      axios
+      .get(`http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`)
+      .then(function (response) {
+        var balance = response.data;
+        var data = {}
+        var keys= []
+        for(var i=0; i<balance.length;i++) {
+          data[balance[i].coin[0].shortName]=balance[i].amount;
+          keys.push(balance[i].coin[0].shortName)
+        }
+        res.render('stats', { balance: JSON.stringify(data), keys: JSON.stringify(keys) });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+    } else {
+      res.render('index');
+    }
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 exports.index = (req, res) => {

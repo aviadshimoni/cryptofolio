@@ -26,7 +26,6 @@ route.get('/maps', services.maps);
 
 // OMER is working here
 route.get('/transactions', services.user_transactions);
-route.get('/stats', services.user_stats);
 
 
 // MORAN is working here
@@ -36,6 +35,7 @@ route.get('/stats', services.user_stats);
 route.get('/api/coin-price', coinData.getCurrentPrice);
 
 route.get('/api/user/balance', transactionController.balance);
+route.get('/api/transactions/usersStats', transactionController.usersStats);
 route.get('/api/user/totalWorth', coinData.getTotalPortifolioWorth);
 
 //Transactions
