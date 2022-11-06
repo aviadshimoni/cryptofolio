@@ -1,0 +1,17 @@
+<% for(var i=0; i < transactions.length; i++) { %>
+    <tr>
+        <td>
+            <%= transactions[i].coinId %>
+        </td>
+        <td>
+            <%= transactions[i].amount %>
+        </td>
+        <td>
+            <%= transactions[i].date %>
+        </td>
+        <td>
+            <a class="btn btn-primary btn-xs" href="/api/transactions/<%= transactions[i]._id %>" data-method="PUT"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-danger btn-xs delete" href="/api/transactions/<%= transactions[i]._id %>" data-method="delete"><i class="fa fa-trash"></i></a>
+        </td>
+    </tr>
+    <% } %>
