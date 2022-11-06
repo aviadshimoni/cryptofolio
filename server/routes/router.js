@@ -6,6 +6,7 @@ const transactionController = require('../controllers/transactionController');
 const coinController = require('../controllers/coinController');
 const coordController = require('../controllers/coordController');
 const adminServices = require('../services/admin');
+const twitterService = require('../services/twitter');
 const coinData = require('../services/coin_service');
 const { auth } = require('express-openid-connect');
 
@@ -27,13 +28,8 @@ route.get('/maps', services.maps);
 // OMER is working here
 route.get('/transactions', services.user_transactions);
 
-
-
-// MORAN is working here
-// route.get('/home', services.homeRoutes);
-
-
 route.get('/api/coin-price', coinData.getCurrentPrice);
+route.get('/api/twitter', twitterService.postTweet);
 
 route.get('/api/user/balance', transactionController.balance);
 route.get('/api/user/totalWorth', coinData.getTotalPortifolioWorth);
