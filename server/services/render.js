@@ -39,24 +39,6 @@ exports.maps = (req, res) => {
 };
 
 // OMER
-exports.user_transactions2 = (req, res) => {
-  // Make a get request to /api/users
-  axios
-    .get(`http://localhost:3000/api/transactions?userEmail=${req.oidc.user.email}`)
-    .then(function (response) {
-      res.render('transactions', {
-        transactions: response.data,
-        user: req.oidc.user
-      });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-};
-exports.index = (req, res) => {
-  res.render('index');
-};
-
 exports.user_transactions = async (req, res) => {
   try {
     if (req.oidc.isAuthenticated()) {
@@ -64,7 +46,7 @@ exports.user_transactions = async (req, res) => {
         `http://localhost:3000/api/transactions?userEmail=${req.oidc.user.email}`
       );
       const { assets } = await axios.get(
-        `http://localhost:3000/api/user/omertest?userEmail=${req.oidc.user.email}`
+        `http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`
       );
       res.render('transactions', {
         transactions: data,
