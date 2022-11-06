@@ -32,6 +32,7 @@ route.get('/api/coin-price', coinData.getCurrentPrice);
 route.get('/api/twitter', twitterService.postTweet);
 
 route.get('/api/user/balance', transactionController.balance);
+route.get('/api/transactions/usersStats', transactionController.usersStats);
 route.get('/api/user/totalWorth', coinData.getTotalPortifolioWorth);
 
 //Transactions

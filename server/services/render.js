@@ -20,11 +20,19 @@ exports.user_home = async (req, res) => {
       const totalPortifolioWorth = await axios.get(
         `http://localhost:3000/api/user/totalWorth?userEmail=${req.oidc.user.email}`
       );
+      var balance = {}
+      var keys= []
+      for(var i=0; i<data.length;i++) {
+        balance[data[i].coin[0].shortName]=data[i].amount;
+        keys.push(data[i].coin[0].shortName)
+      }
       res.render('user_home', {
         assets: data,
         totalPortifolioWorth: totalPortifolioWorth.data,
         user: req.oidc.user,
         isAdmin: isAdmin(req.oidc.user.email),
+        balance: JSON.stringify(balance),
+        keys: JSON.stringify(keys),
       });
     } else {
       res.render('index');

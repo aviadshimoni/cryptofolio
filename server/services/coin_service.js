@@ -29,7 +29,7 @@ exports.getTotalPortifolioWorth = async (req, res) => {
         const currentPrice = await axios.get(
           `http://localhost:3000/api/coin-price?coinSymbol=${item.coin[0].shortName}`
         );
-        return currentPrice.data.price * item.amount;
+        return Math.round(currentPrice.data.price * item.amount * 100) / 100
       })
     );
     const totalPortifolioWorth = results.reduce((b, a) => b + a, 0);
