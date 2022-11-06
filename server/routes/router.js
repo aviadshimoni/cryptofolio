@@ -28,14 +28,6 @@ route.get('/maps', services.maps);
 // OMER is working here
 route.get('/transactions', services.user_transactions);
 
-<<<<<<< HEAD
-
-// MORAN is working here
-// route.get('/home', services.homeRoutes);
-
-
-=======
->>>>>>> d693aec (twitter post is working)
 route.get('/api/coin-price', coinData.getCurrentPrice);
 route.get('/api/twitter', twitterService.postTweet);
 
