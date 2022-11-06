@@ -36,6 +36,7 @@ route.get('/transactions', services.user_transactions);
 route.get('/api/coin-price', coinData.getCurrentPrice);
 
 route.get('/api/user/balance', transactionController.balance);
+route.get('/api/user/omertest', transactionController.omertest);
 route.get('/api/user/totalWorth', coinData.getTotalPortifolioWorth);
 
 //Transactions

@@ -195,3 +195,35 @@ exports.balance = (req, res) => {
       });
   }
 };
+
+exports.omertest = (req, res) => {
+  const query = req.query;
+  if (Object.keys(query).length === 0) {
+    res.status(500).send('empty email');
+  } else {
+    const userEmail = query.userEmail;
+    transactionModel
+      .aggregate([
+        {
+          $match: { userEmail },
+        },
+        {
+          $lookup: {
+            from: 'coins',
+            localField: '_id',
+            foreignField: '_id',
+            as: 'coin',
+          },
+        },
+      ])
+      .then((transaction) => {
+        if (!transaction) {
+          res.status(404).send({
+            message: 'Not found transaction with the following query',
+          });
+        } else {
+          res.send(transaction);
+        }
+      });
+  }
+};
