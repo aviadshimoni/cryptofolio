@@ -1,34 +1,49 @@
-const dotenv = require('dotenv');
-dotenv.config({ path: '/Users/aviads/IdeaProjects/cryptofolio/config.env' });
+const OAuth = require('oauth-1.0a');
+const axios = require('axios');
+const crypto = require('crypto');
 
-const OAuth = require('oauth');
+exports.postTweet = async (req, res) => {
+    if (!req.query.coinName) {
+        res.send("You must specify coinSymbol via query");
+        res.status(400)
+    }
+    const coin   = req.query.coinName;
+    try {
+        const oauth = OAuth({
+            consumer: {
+                key: process.env.TWITTER_CONSUMER_KEY,
+                secret: process.env.TWITTER_CONSUMER_SECRET
+            },
+            signature_method: 'HMAC-SHA1',
+            hash_function: (baseString, key) => crypto.createHmac('sha1', key).update(baseString).digest('base64')
+        });
 
-let oauth = new OAuth.OAuth(
-    'https://api.twitter.com/oauth/request_token',
-    'https://api.twitter.com/oauth/access_token',
-    process.env.TWITTER_CONSUMER_KEY,
-    process.env.TWITTER_CONSUMER_SECRET,
-    '1.0A',
-    null,
-    'HMAC-SHA1'
-);
+        const token = {
+            key: process.env.TWITTER_USER_ACCESS_TOKEN,
+            secret: process.env.TWITTER_USER_SECRET,
+        };
 
-let status = 'Test, Posted using API';  // This is the tweet (ie status)
+        const authHeader = oauth.toHeader(oauth.authorize({
+            url: 'https://api.twitter.com/2/tweets',
+            method: 'POST'
+        }, token));
 
-let postBody = {
-    'status': status
-};
+        const data = {"text": "We supported a new coin in Cryptofolio! Welcome " + coin};
 
-// console.log('Ready to Tweet article:\n\t', postBody.status);
-oauth.post('https://api.twitter.com/1.1/statuses/update.json',
-    process.env.TWITTER_USER_ACCESS_TOKEN,  // oauth_token (user access token)
-    process.env.TWITTER_USER_SECRET,  // oauth_secret (user secret)
-    postBody,  // post body
-    '',  // post content type ?
-    function(err, data, res) {
-        if (err) {
-            console.log(err);
-        } else {
-            // console.log(data);
-        }
-    });
+        await axios.post('https://api.twitter.com/2/tweets',
+            data,
+            {
+                headers: {
+                    Authorization: authHeader["Authorization"],
+                    'user-agent': "v2CreateTweetJS",
+                    'content-type': "application/json",
+                    'accept': "application/json"
+                }
+            }
+        );
+    }
+    catch (err) {
+        console.error(err);
+        res.send(err);
+    }
+}
