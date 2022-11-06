@@ -1,38 +1,32 @@
-<!-- include header -->
-<%- include('include/_header') %>
-<!-- /include header -->
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Cryptofolio </title>
+  <link rel="stylesheet" href="/css/home.css">
+</head>
 
-<!-- Main Site -->
-<main id="site-main">
-  <div class="container">
-    <div class="box-nav d-flex justify-between">
-      <a href="/add-user" class="border-shadow">
-        <span class="text-gradient">New User <i class="fas fa-user"></i></span>
-      </a>
+<body>
+<div class="header">
+  <nav>
+    <div class="logo">
+      <img src="/img/logo.png">
+      <span>Cryptofolio</span>
     </div>
+    <ul>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/maps">Local Crypto Exchanges</a></li>
+    </ul>
+  </nav>
 
-    <!-- form handling -->
-    <form action="/" method="POST">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>@Email</th>
-            <th>Gender</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%- include('include/_show') %>
-        </tbody>
-      </table>
-    </form>
+  <div class="content">
+    <h1 class="slide-left">Stay<br> &nbsp Secure</h1>
+    <p class="slide-left"><br> Setup your account in a few clicks
+      and manage all your crypto directly from Cryptofolio.</p>
+    <div class="links slide-left">
+      <a href="/login">Login</a>
+    </div>
   </div>
-</main>
-<!-- /Main Site -->
-
-<!-- include footer -->
-<%- include('include/_footer') %>
-<!-- /include footer -->
+</div>
+</body>
+</html>

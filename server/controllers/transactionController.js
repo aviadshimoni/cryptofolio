@@ -1,5 +1,6 @@
 const transactionModel = require('../models/transaction');
 const mongoose = require('mongoose');
+const coinService = require('../services/coin_service');
 
 exports.create = (req, res) => {
   if (!req.body) {
@@ -9,9 +10,10 @@ exports.create = (req, res) => {
 
   const transaction = new transactionModel({
     amount: req.body.amount,
-    userId: req.body.userId,
+    userEmail: req.body.userEmail,
+    // userEmail: req.oidc.user.email,
     coinId: req.body.coinId,
-    date: req.body.date,
+    date: req.body?.date,
   });
   transaction
     .save(transaction)
@@ -42,9 +44,10 @@ exports.getId = (req, res) => {
       }
     })
     .catch((err) => {
-      res
-        .status(500)
-        .send({ message: 'Error retrieving transaction with id ' + id });
+      res.status(500).send({
+        message:
+          'Error retrieving transaction with id ' + id + '\nError: ' + err,
+      });
     });
 };
 
@@ -65,12 +68,12 @@ exports.get = (req, res) => {
       });
   } else {
     let parsedQuery = {};
-    const userId = query.userId;
+    const userEmail = query.userEmail;
     const coinId = query.coinId;
     let fromDate = query.fromDate;
     let toDate = query.toDate;
-    if (userId) {
-      parsedQuery['userId'] = userId;
+    if (userEmail) {
+      parsedQuery['userEmail'] = userEmail;
     }
     if (coinId) {
       parsedQuery['coinId'] = coinId;
@@ -96,21 +99,17 @@ exports.get = (req, res) => {
       .find(parsedQuery)
       .then((transaction) => {
         if (!transaction) {
-          res
-            .status(404)
-            .send({
-              message: 'Not found transaction with the following query',
-            });
+          res.status(404).send({
+            message: 'Not found transaction with the following query',
+          });
         } else {
           res.send(transaction);
         }
       })
       .catch((err) => {
-        res
-          .status(500)
-          .send({
-            message: 'Error retrieving transaction with the following query',
-          });
+        res.status(500).send({
+          message: 'Error retrieving transaction with the following query',
+        });
       });
   }
 };
@@ -136,7 +135,6 @@ exports.update = (req, res) => {
     });
 };
 
-//// Delete a user with specified user id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -144,11 +142,9 @@ exports.delete = (req, res) => {
     .findByIdAndDelete(id)
     .then((data) => {
       if (!data) {
-        res
-          .status(404)
-          .send({
-            message: `Cannot Delete transaction with id ${id}. Maybe id is wrong`,
-          });
+        res.status(404).send({
+          message: `Cannot Delete transaction with id ${id}. Maybe id is wrong`,
+        });
       } else {
         res.send({
           message: 'transaction was deleted successfully!',
@@ -165,29 +161,37 @@ exports.delete = (req, res) => {
 exports.balance = (req, res) => {
   const query = req.query;
   if (Object.keys(query).length === 0) {
-    res.status(500).send("empty userId")
+    res.status(500).send('empty email');
   } else {
-    const userId =  new mongoose.Types.ObjectId(query.userId);
+    const userEmail = query.userEmail;
     transactionModel
-        .aggregate([
-          {
-            $match: { userId : userId }
+      .aggregate([
+        {
+          $match: { userEmail },
+        },
+        {
+          $group: {
+            _id: '$coinId',
+            amount: { $sum: '$amount' },
           },
-          {
-            $group: { _id: "$coinId",amount: { $sum: { "$toInt": "$amount"}}}
+        },
+        {
+          $lookup: {
+            from: 'coins',
+            localField: '_id',
+            foreignField: '_id',
+            as: 'coin',
           },
-          {$lookup: {from: 'coins', localField: '_id', foreignField: '_id', as: 'coin' }}
-        ])
-        .then((transaction) => {
-          if (!transaction) {
-            res
-                .status(404)
-                .send({
-                  message: 'Not found transaction with the following query',
-                });
-          } else {
-            res.send(transaction);
-          }
-        })
+        },
+      ])
+      .then((transaction) => {
+        if (!transaction) {
+          res.status(404).send({
+            message: 'Not found transaction with the following query',
+          });
+        } else {
+          res.send(transaction);
+        }
+      });
   }
 };

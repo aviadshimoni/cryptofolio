@@ -1,0 +1,51 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Cryptofolio </title>
+  <link rel="stylesheet" href="/css/user_home.css">
+</head>
+
+<body>
+<div class="header">
+  <nav>
+    <div class="logo">
+      <img src="/img/logo.png">
+      <span>Cryptofolio</span>
+    </div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/transactions">Transactions</a></li>
+      <li><a href="/statistics">Statistics</a></li>
+      <li><a href="/maps">Local Crypto Exchanges</a></li>
+      <li><a href="/contact">Contact </a> </li>
+      <% if(locals.isAdmin) { %>
+        <li><a href="/admin">Admin Dashboard</a></li>
+      <% } %>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <h1 class="slide-left">Welcome back<br> &nbsp <%= user.name %> </h1>
+    <br>
+    <h2 class="slide-left"> Total Portifolio Worth: <%= totalPortifolioWorth.totalPortifolioWorth %> </h2>
+    <br>
+    <!-- form handling -->
+    <form action="/" method="POST">
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th>Symbol</th>
+          <th>Name</th>
+          <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%- include('include/_assets') %>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -11,6 +11,7 @@ exports.create = (req, res) => {
   const coin = new coinModel({
     name: req.body.name,
     shortName: req.body.shortName,
+    icon: req.body.shortName.toLowerCase(),
   });
 
   // save article in the database
@@ -41,7 +42,7 @@ exports.getId = (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send({ message: 'Error retrieving coin with id ' + id });
+      res.status(500).send({ message: 'Error retrieving coin with id ' + id + ', Error:' + err.message});
     });
 };
 
@@ -120,11 +121,9 @@ exports.delete = (req, res) => {
     .findByIdAndDelete(id)
     .then((data) => {
       if (!data) {
-        res
-          .status(404)
-          .send({
-            message: `Cannot Delete coin with id ${id}. Maybe id is wrong`,
-          });
+        res.status(404).send({
+          message: `Cannot Delete coin with id ${id}. Maybe id is wrong`,
+        });
       } else {
         res.send({
           message: 'transaction was coin successfully!',
