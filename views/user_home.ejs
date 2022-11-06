@@ -98,7 +98,7 @@
             .data(data_ready)
             .enter()
             .append('polyline')
-              .attr("stroke", "black")
+              .attr("stroke", "white")
               .style("fill", "none")
               .attr("stroke-width", 1)
               .attr('points', function(d) {
@@ -127,15 +127,16 @@
                   var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
                   return (midangle < Math.PI ? 'start' : 'end')
               })
+              .style('fill', 'white')
       </script>
       </div>
     </div>
     <!-- form handling -->
     <form action="/" method="POST">
-      <table class="table">
-        <thead class="thead-dark">
+      <table class="table text-white">
+        <thead class="thead-light">
         <tr>
-          <th>Symbol</th>
+          <th>Coin</th>
           <th>Name</th>
           <th>Amount</th>
         </tr>
