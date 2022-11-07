@@ -11,7 +11,7 @@ function showLocalizations() {
       var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
       $.each((data), function(idx, obj) {
           var point = new google.maps.LatLng(obj.latitude, obj.longitude);
-          var infowindow = new google.maps.InfoWindow({content: "<span>"+obj.locationName+"</span>"});
+          var infowindow = new google.maps.InfoWindow({content: "<div class=\"text-dark\">"+obj.locationName+"</div>"});
           var marker = new google.maps.Marker({
               position: point,
               map: map,
