@@ -1,5 +1,16 @@
 const axios = require("axios");
 
+const adminMails = [
+    'shimoniaviad@gmail.com',
+    'tzvika.tubis@gmail.com',
+    'adirbu98@gmail.com',
+    'omer5574@gmail.com',
+  ];
+
+const isAdmin = (email) => {
+    return adminMails.includes(email);
+  };
+
 // Coordinates Manager
 exports.coord_manager = async (req, res) => {
     try {
@@ -11,8 +22,19 @@ exports.coord_manager = async (req, res) => {
 };
 
 exports.add_coord = (req, res) => {
-    res.render('add_coord');
-};
+    try {
+      if (req.oidc.isAuthenticated()) {
+        res.render('add_coord', {
+          isAdmin: isAdmin(req.oidc.user.email),
+        });
+      }
+      else {
+        res.render('index');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
 exports.update_coord = async (req, res) => {
     axios
@@ -25,7 +47,6 @@ exports.update_coord = async (req, res) => {
         });
 };
 
-// Coin Manager
 exports.coin_manager = (req, res) => {
     // Make a get request to /api/users
     axios
@@ -37,6 +58,40 @@ exports.coin_manager = (req, res) => {
             res.send(err);
         });
 };
+
+exports.coin_manager = async (req, res) => {
+    try {
+      if (req.oidc.isAuthenticated()) {
+        var {data} = await axios.get('http://localhost:3000/api/coins')
+        res.render('coin_manager', {
+          coins: data,
+          isAdmin: isAdmin(req.oidc.user.email),
+        });
+      }
+      else {
+        res.render('index');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+};
+
+exports.add_coord = async (req, res) => {
+    try {
+      if (req.oidc.isAuthenticated()) {
+        var {data} = await axios.get('http://localhost:3000/api/coins')
+        res.render('add_coord', {
+          coins: response.data,
+          isAdmin: isAdmin(req.oidc.user.email),
+        });
+      }
+      else {
+        res.render('index');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
 
 exports.add_coin = (req, res) => {
