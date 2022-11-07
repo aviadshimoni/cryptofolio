@@ -11,13 +11,20 @@ const isAdmin = (email) => {
     return adminMails.includes(email);
   };
 
-// Coordinates Manager
 exports.coord_manager = async (req, res) => {
     try {
-        const { data } = await axios.get('http://localhost:3000/api/coords');
-        res.render('coord_manager', { coords: data });
-    } catch (err) {
-        console.log(err);
+      if (req.oidc.isAuthenticated()) {
+        var {data} = await axios.get('http://localhost:3000/api/coords')
+        res.render('coord_manager', {
+          coords: data,
+          isAdmin: isAdmin(req.oidc.user.email),
+        });
+      }
+      else {
+        res.render('index');
+      }
+    } catch (e) {
+      console.log(e);
     }
 };
 
@@ -41,18 +48,6 @@ exports.update_coord = async (req, res) => {
         .get(`http://localhost:3000/api/coords/${req.query.id}`)
         .then(function (coorddata) {
             res.render('update_coord', { coord: coorddata.data });
-        })
-        .catch((err) => {
-            res.send(err);
-        });
-};
-
-exports.coin_manager = (req, res) => {
-    // Make a get request to /api/users
-    axios
-        .get('http://localhost:3000/api/coins')
-        .then(function (response) {
-            res.render('coin_manager', { coins: response.data });
         })
         .catch((err) => {
             res.send(err);
