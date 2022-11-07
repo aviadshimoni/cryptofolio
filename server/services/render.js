@@ -43,7 +43,19 @@ exports.user_home = async (req, res) => {
 };
 
 exports.maps = (req, res) => {
-  res.render('maps', { maps_key: process.env.MAPS_TOKEN });
+  try {
+    if (req.oidc.isAuthenticated()) {
+      res.render('maps', {
+        maps_key: process.env.MAPS_TOKEN,
+        isAdmin: isAdmin(req.oidc.user.email),
+      });
+    }
+    else {
+      res.render('index');
+    }
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 // OMER
@@ -72,9 +84,6 @@ exports.user_transactions = async (req, res) => {
 
 exports.admin_page = async (req, res) => {
   if (req.oidc.isAuthenticated()) {
-    const { data } = await axios.get(
-      `http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`
-    );
     if (isAdmin(req.oidc.user.email)) {
       try {
         const { data } = await axios.get(
