@@ -5,7 +5,7 @@
     <td><%= coords[i].latitude %></td>
     <td><%= coords[i].longitude %></td>
     <td>
-        <a href="/admin/coord-manager/update-coord?id=<%= coords[i]._id%>" class="btn border-shadow update btn-light" role="button" aria-pressed="true">
+        <a href="/admin/coord-manager/update-coord?id=<%= coords[i]._id%>" class="btn border-shadow update btn-light" role="button" aria-pressed="true" data-toggle="modal" data-target="#myModal">
             <i class="bi bi-pen"></i>
         </a>
         <a href="/admin/coin-manager/update-coin?id=<%= coords[i]._id%>" class="btn border-shadow update btn-light" role="button" aria-pressed="true">
@@ -14,3 +14,12 @@
     </td>
 </tr>
 <% } %>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
