@@ -60,7 +60,7 @@ exports.user_transactions = async (req, res) => {
         transactions: data,
         assets: assets,
         user: req.oidc.user,
-        // isAdmin: isAdmin(req.oidc.user.email),
+        isAdmin: isAdmin(req.oidc.user.email),
       });
     } else {
       res.render('index');
@@ -72,19 +72,28 @@ exports.user_transactions = async (req, res) => {
 
 
 exports.admin_page = async (req, res) => {
-  if (isAdmin(req.oidc.user.email)) {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:3000/api/transactions/usersStats`
-      );
-      res.render('admin_page', {
-        stats: JSON.stringify(data),
-      });
+  if (req.oidc.isAuthenticated()) {
+    const { data } = await axios.get(
+      `http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`
+    );
+    if (isAdmin(req.oidc.user.email)) {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/api/transactions/usersStats`
+        );
+        res.render('admin_page', {
+          isAdmin: isAdmin(req.oidc.user.email),
+          stats: JSON.stringify(data),
+        });
+      }
+      catch (e) {
+        console.log(e);
+      }
+    } else {
+      res.render('index');
     }
-    catch (e) {
-      console.log(e);
-    }
-  } else {
+  }
+  else {
     res.render('index');
   }
 };
