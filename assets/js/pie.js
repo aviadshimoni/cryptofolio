@@ -1,6 +1,7 @@
 // set the dimensions and margins of the graph
-var width = 500
-    height = 500
+var screenWidth = window.screen.width;
+var width = screenWidth *0.3
+    height = screenWidth *0.3
     margin = 40
 
 // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.

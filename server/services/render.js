@@ -71,9 +71,19 @@ exports.user_transactions = async (req, res) => {
 };
 
 
-exports.admin_page = (req, res) => {
+exports.admin_page = async (req, res) => {
   if (isAdmin(req.oidc.user.email)) {
-    res.render('admin_page');
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/api/transactions/usersStats`
+      );
+      res.render('admin_page', {
+        stats: JSON.stringify(data),
+      });
+    }
+    catch (e) {
+      console.log(e);
+    }
   } else {
     res.render('index');
   }
