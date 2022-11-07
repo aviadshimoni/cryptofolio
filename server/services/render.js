@@ -70,7 +70,6 @@ exports.user_transactions = async (req, res) => {
   }
 };
 
-
 exports.admin_page = async (req, res) => {
   if (req.oidc.isAuthenticated()) {
     const { data } = await axios.get(
