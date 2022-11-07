@@ -43,7 +43,19 @@ exports.user_home = async (req, res) => {
 };
 
 exports.maps = (req, res) => {
-  res.render('maps', { maps_key: process.env.MAPS_TOKEN });
+  try {
+    if (req.oidc.isAuthenticated()) {
+      res.render('maps', {
+        maps_key: process.env.MAPS_TOKEN,
+        isAdmin: isAdmin(req.oidc.user.email),
+      });
+    }
+    else {
+      res.render('index');
+    }
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 // OMER
@@ -60,7 +72,7 @@ exports.user_transactions = async (req, res) => {
         transactions: data,
         assets: assets,
         user: req.oidc.user,
-        // isAdmin: isAdmin(req.oidc.user.email),
+        isAdmin: isAdmin(req.oidc.user.email),
       });
     } else {
       res.render('index');
@@ -70,11 +82,26 @@ exports.user_transactions = async (req, res) => {
   }
 };
 
-
-exports.admin_page = (req, res) => {
-  if (isAdmin(req.oidc.user.email)) {
-    res.render('admin_page');
-  } else {
+exports.admin_page = async (req, res) => {
+  if (req.oidc.isAuthenticated()) {
+    if (isAdmin(req.oidc.user.email)) {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/api/transactions/usersStats`
+        );
+        res.render('admin_page', {
+          isAdmin: isAdmin(req.oidc.user.email),
+          stats: JSON.stringify(data),
+        });
+      }
+      catch (e) {
+        console.log(e);
+      }
+    } else {
+      res.render('index');
+    }
+  }
+  else {
     res.render('index');
   }
 };

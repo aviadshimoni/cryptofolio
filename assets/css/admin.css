@@ -12,6 +12,7 @@
     background-position: center;
     background-size: cover;
     overflow-x: hidden;
+
 }
 
 nav{
@@ -198,3 +199,15 @@ table {
         position: relative;
     }
 }
+.axisWhite line{
+    stroke: white;
+}
+
+.axisWhite path{
+    stroke: white;
+}
+
+.axisWhite text{
+    fill: white;
+    font-size: 14px
+}  
