@@ -60,25 +60,34 @@ exports.maps = (req, res) => {
 
 // OMER
 exports.user_transactions = async (req, res) => {
-  try {
-    if (req.oidc.isAuthenticated()) {
+  if (req.oidc.isAuthenticated()) {
+    try {
       const { data } = await axios.get(
         `http://localhost:3000/api/transactions?userEmail=${req.oidc.user.email}`
       );
       const { assets } = await axios.get(
         `http://localhost:3000/api/user/balance?userEmail=${req.oidc.user.email}`
       );
+      const coins = await axios.get(
+        `http://localhost:3000/api/coins`
+      );
+      const totalPortifolioWorth = await axios.get(
+        `http://localhost:3000/api/user/totalWorth?userEmail=${req.oidc.user.email}`
+      );
+      console.log(coins.data);
       res.render('transactions', {
         transactions: data,
+        coins: coins.data,
         assets: assets,
         user: req.oidc.user,
+        totalPortifolioWorth: totalPortifolioWorth.data,
         isAdmin: isAdmin(req.oidc.user.email),
       });
-    } else {
-      res.render('index');
+    } catch (e) {
+      console.log(e);
     }
-  } catch (e) {
-    console.log(e);
+  } else {k
+    res.render('index');
   }
 };
 
