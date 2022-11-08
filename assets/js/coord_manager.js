@@ -8,6 +8,7 @@ function edit_click (btn) {
   $("#editModal :input[name='locationName']").val(locationName);
   $("#editModal :input[name='latitude']").val(latitude);
   $("#editModal :input[name='longitude']").val(longitude);
+  $("#update_coord").attr("action", "/api/coords/" + id);
 };
 
 function clean_modal (btn) {

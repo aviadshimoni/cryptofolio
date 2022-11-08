@@ -103,3 +103,39 @@ exports.update_coin = (req, res) => {
             res.send(err);
         });
 };
+
+exports.delete_coin = async (req, res) => {
+  try {
+    if (req.oidc.isAuthenticated()) {
+      await axios.delete(`http://localhost:3000/api/coins/${req.query.id}`)
+      var {data} = await axios.get('http://localhost:3000/api/coins')
+      res.render('coin_manager', {
+        coins: data,
+        isAdmin: isAdmin(req.oidc.user.email),
+      });
+    }
+    else {
+      res.render('index');
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+exports.delete_coord = async (req, res) => {
+  try {
+    if (req.oidc.isAuthenticated()) {
+      await axios.delete(`http://localhost:3000/api/coords/${req.query.id}`)
+      var {data} = await axios.get('http://localhost:3000/api/coords')
+      res.render('coord_manager', {
+        coords: data,
+        isAdmin: isAdmin(req.oidc.user.email),
+      });
+    }
+    else {
+      res.render('index');
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};

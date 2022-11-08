@@ -19,7 +19,7 @@ exports.create = (req, res) => {
     .save(coord)
     .then((data) => {
       res.status(200);
-      res.send(data);
+      res.redirect('/admin/coord-manager');
     })
     .catch((err) => {
       res.status(500).send({
@@ -105,7 +105,7 @@ exports.update = (req, res) => {
           message: `Cannot Update coord with ${id}. Maybe transaction not found!`,
         });
       } else {
-        res.send(data);
+        res.redirect('/admin/coord-manager');
       }
     })
     .catch((err) => {
