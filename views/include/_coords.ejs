@@ -5,7 +5,7 @@
     <td><%= coords[i].latitude %></td>
     <td><%= coords[i].longitude %></td>
     <td>
-        <a href="/admin/coord-manager/update-coord?id=<%= coords[i]._id%>" class="btn border-shadow update btn-light" role="button" aria-pressed="true">
+        <a id="edit" onClick="edit_click(this)" class="btn border-shadow update btn-light" role="button" aria-pressed="true" data-bs-toggle="modal" data-bs-target="#editModal">
             <i class="bi bi-pen"></i>
         </a>
         <a href="/admin/coin-manager/update-coin?id=<%= coords[i]._id%>" class="btn border-shadow update btn-light" role="button" aria-pressed="true">

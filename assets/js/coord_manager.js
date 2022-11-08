@@ -1,43 +1,61 @@
-$('#add_coord').submit(function (event) {
-  alert('Data Inserted Successfully!');
-});
+function edit_click (btn) {
+  var tds = $(btn.closest("tr")).children();
+  var id = $(tds[0]).text();
+  var locationName = $(tds[1]).text();
+  var latitude = $(tds[2]).text()
+  var longitude = $(tds[3]).text()
+  $("#editModal :input[name='id']").val(id);
+  $("#editModal :input[name='locationName']").val(locationName);
+  $("#editModal :input[name='latitude']").val(latitude);
+  $("#editModal :input[name='longitude']").val(longitude);
+};
 
-$('#update_coord').submit(function (event) {
-  event.preventDefault();
+function clean_modal (btn) {
+  $("#createModal :input[name='locationName']").val("");
+  $("#createModal :input[name='latitude']").val("");
+  $("#createModal :input[name='longitude']").val("");
+};
 
-  var unindexed_array = $(this).serializeArray();
-  var data = {};
+// $('#add_coord').submit(function (event) {
+//   alert('Data Inserted Successfully!');
+// });
 
-  $.map(unindexed_array, function (n, i) {
-    data[n['name']] = n['value'];
-  });
+// $('#update_coord').submit(function (event) {
+//   event.preventDefault();
 
-  var request = {
-    url: `http://localhost:3000/api/coords/${data.id}`,
-    method: 'PUT',
-    data: data,
-  };
+//   var unindexed_array = $(this).serializeArray();
+//   var data = {};
 
-  $.ajax(request).done(function (response) {
-    alert('Data Updated Successfully!');
-  });
-});
+//   $.map(unindexed_array, function (n, i) {
+//     data[n['name']] = n['value'];
+//   });
 
-if (window.location.pathname == '/admin/coord-manager') {
-  $ondelete = $('.table tbody td a.delete');
-  $ondelete.click(function () {
-    var id = $(this).attr('data-id');
+//   var request = {
+//     url: `http://localhost:3000/api/coords/${data.id}`,
+//     method: 'PUT',
+//     data: data,
+//   };
 
-    var request = {
-      url: `http://localhost:3000/api/coords/${id}`,
-      method: 'DELETE',
-    };
+//   $.ajax(request).done(function (response) {
+//     alert('Data Updated Successfully!');
+//   });
+// });
 
-    if (confirm('Do you really want to delete this record?')) {
-      $.ajax(request).done(function (response) {
-        alert('Data Deleted Successfully!');
-        location.reload();
-      });
-    }
-  });
-}
+// if (window.location.pathname == '/admin/coord-manager') {
+//   $ondelete = $('.table tbody td a.delete');
+//   $ondelete.click(function () {
+//     var id = $(this).attr('data-id');
+
+//     var request = {
+//       url: `http://localhost:3000/api/coords/${id}`,
+//       method: 'DELETE',
+//     };
+
+//     if (confirm('Do you really want to delete this record?')) {
+//       $.ajax(request).done(function (response) {
+//         alert('Data Deleted Successfully!');
+//         location.reload();
+//       });
+//     }
+//   });
+// }

@@ -5,7 +5,94 @@
   <link rel="stylesheet" href="/css/coin.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+
+   <!-- The Modal -->
+   <div class="modal" id="createModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Coin</h4>
+          <button type="button" onClick="clean_modal(this)" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form method="POST" id="create_coin">
+                <div class="modal-body">  
+                    <div class="form-group">
+                        <label for="name" class="text-dark w-25">Name</label>
+                        <input type="text" class="w-50" name="name" placeholder="ie: Bitcoin">
+                    </div>
+                    <div class="form-group">
+                        <label for="shortName" class="text-dark w-25">Short Name</label>
+                        <input type="text" class="w-50" name="shortName" placeholder="BTC">
+                    </div>
+                    <div class="form-group">
+                        <label for="icon" class="text-dark w-25">Icon URL</label>
+                        <input type="text" class="w-50" name="icon" placeholder="https://example.com">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <div class="form-group">
+                      <button type="Create" class="btn btn-success create">Create</button>
+                  </div>
+              </div>
+            </form>
+        </div>
+  
+        <!-- Modal footer -->
+      </div>
+    </div>
+  </div>
+  
+   <!-- The Modal -->
+   <div class="modal" id="editModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form method="POST" id="update_coord">
+                <div class="modal-body">  
+                    <div class="form-group">
+                      <label for="name" class="text-dark w-25">Name</label>
+                      <input type="hidden" name="id">
+                      <input type="text" class="w-50" name="name" placeholder="ie: Bitcoin">
+                    </div>
+                    <div class="form-group">
+                      <label for="shortName" class="text-dark w-25">Short Name</label>
+                      <input type="text" class="w-50" name="shortName" placeholder="BTC">
+                  </div>
+                  <div class="form-group">
+                      <label for="icon" class="text-dark w-25">Icon URL</label>
+                      <input type="text" class="w-50" name="icon" placeholder="https://example.com">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <div class="form-group">
+                      <button type="Update" class="btn btn-danger update">Save</button>
+                  </div>
+              </div>
+            </form>
+        </div>
+  
+        <!-- Modal footer -->
+      </div>
+    </div>
+  </div>
+  
+  <script src="http://localhost:3000/js/coin_manager.js"></script>
 
 <body>
 <div class="header">
@@ -29,7 +116,7 @@
   <div class="content">
     <!-- form handling -->
     <div class="d-flex flex-row-reverse">
-        <a class="btn border-shadow update btn-light p-2" role="button" aria-pressed="true">
+        <a class="btn border-shadow update btn-light p-2" role="button" aria-pressed="true" data-bs-toggle="modal" data-bs-target="#createModal">
           <i class="bi bi-file-earmark-plus"></i>
         </a>
     </div>
