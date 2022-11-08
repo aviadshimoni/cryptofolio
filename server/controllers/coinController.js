@@ -108,7 +108,6 @@ exports.update = (req, res) => {
           message: `Cannot Update coin with ${id}. Maybe transaction not found!`,
         });
       } else {
-        res.status(200);
         res.redirect('/admin/coin-manager');
       }
     })
