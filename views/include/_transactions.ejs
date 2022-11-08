@@ -1,0 +1,26 @@
+<% for(var i=0; i < transactions.length; i++) { %>
+    <tr>
+        <td>
+            <span><%= transactions[i]._id %></span>
+        </td>
+        <td>
+            <img src="https://github.com/ErikThiart/cryptocurrency-icons/blob/master/icons/<%= transactions[i].coin[0].icon %>.png?raw=true"/>
+            <%= transactions[i].coin[0].shortName %>
+            <input type="hidden" value="<%= transactions[i].coin[0]._id %>">
+        </td>
+        <td>
+            <span><%= transactions[i].amount %></span>
+        </td>
+        <td>
+            <span><%= new Date(transactions[i].date).toISOString() %></span>
+        </td>
+        <td>
+            <a id="edit" onClick="edit_click(this)" class="btn border-shadow update btn-light" role="button" aria-pressed="true" data-bs-toggle="modal" data-bs-target="#editModal">
+                <i class="bi bi-pen"></i>
+            </a>
+            <a href="/api/transactions/delete/<%= transactions[i]._id%>" class="btn border-shadow update btn-light" role="button" aria-pressed="true">
+                <i class="bi bi-trash3"></i>
+            </a>
+        </td>
+    </tr>
+    <% } %>
