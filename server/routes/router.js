@@ -64,5 +64,7 @@ route.get('/admin/coord-manager/update-coord', adminServices.update_coord);
 route.get('/admin/coin-manager', adminServices.coin_manager);
 route.get('/admin/coin-manager/add-coin', adminServices.add_coin);
 route.get('/admin/coin-manager/update-coin', adminServices.update_coin);
+route.get('/admin/coin-manager/delete-coin', adminServices.delete_coin);
+route.get('/admin/coin-manager/delete-coord', adminServices.delete_coord);
 
 module.exports = route;
