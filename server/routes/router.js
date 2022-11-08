@@ -39,8 +39,8 @@ route.get('/api/user/totalWorth', coinData.getTotalPortifolioWorth);
 route.post('/api/transactions', transactionController.create);
 route.get('/api/transactions/:id', transactionController.getId);
 route.get('/api/transactions', transactionController.get);
-route.put('/api/transactions/:id', transactionController.update);
-route.delete('/api/transactions/:id', transactionController.delete);
+route.post('/api/transactions/:id', transactionController.update);
+route.get('/api/transactions/delete/:id', transactionController.delete);
 
 //Coins
 route.post('/api/coins', coinController.create);

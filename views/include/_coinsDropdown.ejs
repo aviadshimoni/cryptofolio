@@ -1,0 +1,5 @@
+<select class="w-50" name="coinId">
+<% for(var i=0; i < coins.length; i++) { %>
+        <option value="<%= coins[i]._id %>"><%= coins[i].name %></option>
+<% } %>
+</select>

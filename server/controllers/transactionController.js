@@ -19,7 +19,7 @@ exports.create = (req, res) => {
     .save(transaction)
     .then((data) => {
       res.status(200);
-      res.send(data);
+      res.redirect('/transactions');
     })
     .catch((err) => {
       res.status(500).send({
@@ -67,36 +67,21 @@ exports.get = (req, res) => {
         });
       });
   } else {
-    let parsedQuery = {};
     const userEmail = query.userEmail;
-    const coinId = query.coinId;
-    let fromDate = query.fromDate;
-    let toDate = query.toDate;
-    if (userEmail) {
-      parsedQuery['userEmail'] = userEmail;
-    }
-    if (coinId) {
-      parsedQuery['coinId'] = coinId;
-    }
-    if (fromDate) {
-      let [dateValues, timeValues] = fromDate.split(' ');
-      let [month, day, year] = dateValues.split('/');
-      let [hours, minutes, seconds] = timeValues.split(':');
-      fromDate = new Date(+year, month - 1, +day, +hours, +minutes, +seconds);
-      parsedQuery['date'] = { $gt: fromDate };
-    }
-    if (toDate) {
-      let [dateValues, timeValues] = toDate.split(' ');
-      let [month, day, year] = dateValues.split('/');
-      let [hours, minutes, seconds] = timeValues.split(':');
-      toDate = new Date(+year, month - 1, +day, +hours, +minutes, +seconds);
-      parsedQuery['date'] = { $lt: toDate };
-    }
-
-    console.log(`searching transactions: ${JSON.stringify(parsedQuery)}`);
-
     transactionModel
-      .find(parsedQuery)
+      .aggregate([
+        {
+          $match: { userEmail },
+        },
+        {
+          $lookup: {
+            from: 'coins',
+            localField: 'coinId',
+            foreignField: '_id',
+            as: 'coin',
+          },
+        },
+      ])
       .then((transaction) => {
         if (!transaction) {
           res.status(404).send({
@@ -105,14 +90,10 @@ exports.get = (req, res) => {
         } else {
           res.send(transaction);
         }
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: 'Error retrieving transaction with the following query',
-        });
       });
   }
 };
+
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: 'Data to update can not be empty' });
@@ -127,7 +108,7 @@ exports.update = (req, res) => {
           message: `Cannot Update transaction with ${id}. Maybe transaction not found!`,
         });
       } else {
-        res.send(data);
+        res.redirect('/transactions');
       }
     })
     .catch((err) => {
@@ -146,9 +127,7 @@ exports.delete = (req, res) => {
           message: `Cannot Delete transaction with id ${id}. Maybe id is wrong`,
         });
       } else {
-        res.send({
-          message: 'transaction was deleted successfully!',
-        });
+        res.redirect('/transactions');
       }
     })
     .catch((err) => {
