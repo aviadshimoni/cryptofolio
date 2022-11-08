@@ -12,7 +12,7 @@ exports.create = (req, res) => {
   const coin = new coinModel({
     name: req.body.name,
     shortName: req.body.shortName,
-    icon: req.body.shortName.toLowerCase(),
+    icon: req.body.name.toLowerCase(),
   });
 
   // save article in the database
@@ -108,7 +108,8 @@ exports.update = (req, res) => {
           message: `Cannot Update coin with ${id}. Maybe transaction not found!`,
         });
       } else {
-        res.send(data);
+        res.status(200);
+        res.redirect('/admin/coin-manager');
       }
     })
     .catch((err) => {

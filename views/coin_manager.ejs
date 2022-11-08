@@ -32,10 +32,6 @@
                         <label for="shortName" class="text-dark w-25">Short Name</label>
                         <input type="text" class="w-50" name="shortName" placeholder="BTC">
                     </div>
-                    <div class="form-group">
-                        <label for="icon" class="text-dark w-25">Icon URL</label>
-                        <input type="text" class="w-50" name="icon" placeholder="https://example.com">
-                    </div>
                 </div>
                 <div class="modal-footer">
                   <div class="form-group">
@@ -63,20 +59,19 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-            <form method="POST" id="update_coord">
+            <form method="POST" id="update_coin">
                 <div class="modal-body">  
                     <div class="form-group">
                       <label for="name" class="text-dark w-25">Name</label>
                       <input type="hidden" name="id">
-                      <input type="text" class="w-50" name="name" placeholder="ie: Bitcoin">
+                      <input type="text" class="w-50" name="name" onchange="edit_name_change()" placeholder="ie: Bitcoin">
                     </div>
                     <div class="form-group">
                       <label for="shortName" class="text-dark w-25">Short Name</label>
                       <input type="text" class="w-50" name="shortName" placeholder="BTC">
                   </div>
                   <div class="form-group">
-                      <label for="icon" class="text-dark w-25">Icon URL</label>
-                      <input type="text" class="w-50" name="icon" placeholder="https://example.com">
+                      <input type="hidden" name="icon">
                   </div>
                 </div>
                 <div class="modal-footer">

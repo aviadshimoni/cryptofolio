@@ -46,14 +46,14 @@ route.delete('/api/transactions/:id', transactionController.delete);
 route.post('/api/coins', coinController.create);
 route.get('/api/coins/:id', coinController.getId);
 route.get('/api/coins', coinController.get);
-route.put('/api/coins/:id', coinController.update);
+route.post('/api/coins/:id', coinController.update);
 route.delete('/api/coins/:id', coinController.delete);
 
 //Coords
 route.post('/api/coords', coordController.create);
 route.get('/api/coords/:id', coordController.getId);
 route.get('/api/coords', coordController.get);
-route.put('/api/coords/:id', coordController.update);
+route.post('/api/coords/:id', coordController.update);
 route.delete('/api/coords/:id', coordController.delete);
 
 // Admin

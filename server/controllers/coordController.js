@@ -105,7 +105,7 @@ exports.update = (req, res) => {
           message: `Cannot Update coord with ${id}. Maybe transaction not found!`,
         });
       } else {
-        res.send(data);
+        res.redirect('/admin/coord-manager');
       }
     })
     .catch((err) => {
