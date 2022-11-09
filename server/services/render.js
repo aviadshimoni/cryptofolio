@@ -33,6 +33,7 @@ exports.user_home = async (req, res) => {
         isAdmin: isAdmin(req.oidc.user.email),
         balance: JSON.stringify(balance),
         keys: JSON.stringify(keys),
+        isAuth: req.oidc.isAuthenticated(),
       });
     } else {
       res.render('index');
@@ -48,10 +49,14 @@ exports.maps = (req, res) => {
       res.render('maps', {
         maps_key: process.env.MAPS_TOKEN,
         isAdmin: isAdmin(req.oidc.user.email),
+        isAuth: req.oidc.isAuthenticated(),
       });
     }
     else {
-      res.render('index');
+      res.render('maps', {
+        maps_key: process.env.MAPS_TOKEN,
+        isAuth: req.oidc.isAuthenticated(),
+      });
     }
   } catch (e) {
     console.log(e);
@@ -82,6 +87,7 @@ exports.user_transactions = async (req, res) => {
         user: req.oidc.user,
         totalPortifolioWorth: totalPortifolioWorth.data,
         isAdmin: isAdmin(req.oidc.user.email),
+        isAuth: req.oidc.isAuthenticated(),
       });
     } catch (e) {
       console.log(e);
@@ -101,6 +107,7 @@ exports.admin_page = async (req, res) => {
         res.render('admin_page', {
           isAdmin: isAdmin(req.oidc.user.email),
           stats: JSON.stringify(data),
+          isAuth: req.oidc.isAuthenticated(),
         });
       }
       catch (e) {
