@@ -53,7 +53,10 @@ exports.maps = (req, res) => {
       });
     }
     else {
-      res.render('index');
+      res.render('maps', {
+        maps_key: process.env.MAPS_TOKEN,
+        isAuth: req.oidc.isAuthenticated(),
+      });
     }
   } catch (e) {
     console.log(e);

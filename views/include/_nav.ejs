@@ -1,11 +1,10 @@
 <% if(locals.isAuth) { %>
 <nav>
-  <div class="logo">
+  <div class="logo" onclick="location.href='/'">
     <img src="/img/logo.png">
     <span>Cryptofolio</span>
   </div>
   <ul>
-    <li><a href="/">Home</a></li>
     <li><a href="/transactions">Transactions</a></li>
     <li><a href="/maps">Local Crypto Exchanges</a></li>
     <li><a href="/contact">Contact </a> </li>
@@ -18,12 +17,11 @@
 <% } %>
 <% if(!locals.isAuth) { %>
 <nav>
-  <div class="logo">
+  <div class="logo" onclick="location.href='/'">
     <img src="/img/logo.png">
     <span>Cryptofolio</span>
   </div>
   <ul>
-    <li><a href="/about">About</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/maps">Local Crypto Exchanges</a></li>
   </ul>
