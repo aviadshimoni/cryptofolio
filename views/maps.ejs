@@ -1,34 +1,15 @@
 <html>
 <head>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Cryptofolio | Exhanges </title>
-  <link rel="icon" type="image/png" href="/img/logo.png" />
   <link rel="stylesheet" href="/css/admin.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <script src="http://maps.googleapis.com/maps/api/js?key=<%= maps_key %>&sensor=false"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="http://localhost:3000/js/map.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?key=<%= maps_key %>&sensor=false"></script>
+  <%- include('include/_header') %>
 </head>
 
 <body>
 <div class="header">
-  <nav>
-    <div class="logo">
-      <img src="/img/logo.png">
-      <span>Cryptofolio</span>
-    </div>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/transactions">Transactions</a></li>
-      <li><a href="/maps">Local Crypto Exchanges</a></li>
-      <li><a href="/contact">Contact </a> </li>
-      <% if(locals.isAdmin) { %>
-        <li><a href="/admin">Admin Dashboard</a></li>
-      <% } %>
-      <li><a href="/logout">Logout</a></li>
-    </ul>
-  </nav>
-
+  <%- include('include/_nav') %>
   <div class="content">
     <body onload='showLocalizations()'>
     <div id="googleMap" style="position:fixed;top:0px;left:0px;width:100%;height:80%;"></div>
