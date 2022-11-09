@@ -1,0 +1,16 @@
+<nav>
+  <div class="logo">
+    <img src="/img/logo.png">
+    <span>Cryptofolio</span>
+  </div>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/transactions">Transactions</a></li>
+    <li><a href="/maps">Local Crypto Exchanges</a></li>
+    <li><a href="/contact">Contact </a> </li>
+    <% if(locals.isAdmin) { %>
+      <li><a href="/admin">Admin Dashboard</a></li>
+    <% } %>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+</nav>
