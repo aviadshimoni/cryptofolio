@@ -1,3 +1,4 @@
+<% if(locals.isAuth) { %>
 <nav>
   <div class="logo">
     <img src="/img/logo.png">
@@ -14,3 +15,17 @@
     <li><a href="/logout">Logout</a></li>
   </ul>
 </nav>
+<% } %>
+<% if(!locals.isAuth) { %>
+<nav>
+  <div class="logo">
+    <img src="/img/logo.png">
+    <span>Cryptofolio</span>
+  </div>
+  <ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/maps">Local Crypto Exchanges</a></li>
+  </ul>
+</nav>
+<% } %>
