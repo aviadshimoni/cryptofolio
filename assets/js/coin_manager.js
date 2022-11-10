@@ -22,3 +22,24 @@ function clean_modal (btn) {
   $("#createModal :input[name='shortName']").val("");
   $("#createModal :input[name='icon']").val("");
 };
+
+function validateForm(form) {
+  let formShortName = form["shortName"].value.toLowerCase();
+  let formName = form["name"].value.toLowerCase();
+  var trs = $("#coinTable").children();
+  for(var i = 0; i < trs.length; i++) {
+    var tds = $($(trs[i]).children())
+    var shortName = $(tds[1]).children('span').text().toLowerCase()
+    var name = $(tds[2]).text().toLowerCase()
+    if(formShortName === shortName)
+    {
+      alert("This short name already exists!");
+      return false;
+    }
+    if(formName === name)
+    {
+      alert("This name already exists!");
+      return false;
+    }
+  }
+}
