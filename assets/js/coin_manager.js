@@ -23,23 +23,46 @@ function clean_modal (btn) {
   $("#createModal :input[name='icon']").val("");
 };
 
-function validateForm(form) {
-  let formShortName = form["shortName"].value.toLowerCase();
-  let formName = form["name"].value.toLowerCase();
+function validatShortName(input) {
+  let formShortName = $(input).val().toLowerCase();
   var trs = $("#coinTable").children();
   for(var i = 0; i < trs.length; i++) {
     var tds = $($(trs[i]).children())
     var shortName = $(tds[1]).children('span').text().toLowerCase()
-    var name = $(tds[2]).text().toLowerCase()
+    var inValied= false;
     if(formShortName === shortName)
     {
-      alert("This short name already exists!");
-      return false;
+      inValied=true;
+      break;
     }
+  }
+  if(inValied){
+    input.setCustomValidity("This short name already exists!")
+    input.reportValidity()
+  }else{
+    input.setCustomValidity("")
+    input.reportValidity()
+  }
+}
+
+function validatName(input) {
+  let formName = $(input).val().toLowerCase();
+  var trs = $("#coinTable").children();
+  for(var i = 0; i < trs.length; i++) {
+    var tds = $($(trs[i]).children())
+    var name = $(tds[2]).text().toLowerCase()
+    var inValied= false;
     if(formName === name)
     {
-      alert("This name already exists!");
-      return false;
+      inValied=true;
+      break;
     }
+  }
+  if(inValied){
+    input.setCustomValidity("This name already exists!")
+    input.reportValidity()
+  }else{
+    input.setCustomValidity("")
+    input.reportValidity()
   }
 }

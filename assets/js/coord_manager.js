@@ -37,3 +37,48 @@ function validateForm(form) {
     }
   }
 }
+
+
+function validatLatitude(input) {
+  let formLatitude = $(input).val().toLowerCase();
+  var trs = $("#coordTable").children();
+  for(var i = 0; i < trs.length; i++) {
+    var tds = $($(trs[i]).children())
+    var latitude = $(tds[2]).text().toLowerCase()
+    var inValied= false;
+    if(formLatitude === latitude)
+    {
+      inValied=true;
+      break;
+    }
+  }
+  if(inValied){
+    input.setCustomValidity("This latitude already exists!")
+    input.reportValidity()
+  }else{
+    input.setCustomValidity("")
+    input.reportValidity()
+  }
+}
+
+function validatLongitude(input) {
+  let formLongitude = $(input).val().toLowerCase();
+  var trs = $("#coordTable").children();
+  for(var i = 0; i < trs.length; i++) {
+    var tds = $($(trs[i]).children())
+    var longitude = $(tds[3]).text().toLowerCase()
+    var inValied= false;
+    if(formLongitude === longitude)
+    {
+      inValied=true;
+      break;
+    }
+  }
+  if(inValied){
+    input.setCustomValidity("This longitude already exists!")
+    input.reportValidity()
+  }else{
+    input.setCustomValidity("")
+    input.reportValidity()
+  }
+}
