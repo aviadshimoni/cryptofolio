@@ -18,7 +18,7 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-            <form method="POST" action="/api/coins">
+            <form method="POST" action="/api/coins" onsubmit="return validateForm(this)">
                 <div class="modal-body">  
                     <div class="form-group">
                         <label for="name" class="text-dark w-25">Name</label>
@@ -55,7 +55,7 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-            <form method="POST" id="update_coin">
+            <form method="POST" id="update_coin" onsubmit="return validateForm(this)">
                 <div class="modal-body">  
                     <div class="form-group">
                       <label for="name" class="text-dark w-25">Name</label>
@@ -103,7 +103,7 @@
             <th>Actions</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody id="coinTable">
           <%- include('include/_coins') %>
           </tbody>
         </table>

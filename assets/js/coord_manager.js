@@ -16,3 +16,24 @@ function clean_modal (btn) {
   $("#createModal :input[name='latitude']").val("");
   $("#createModal :input[name='longitude']").val("");
 };
+
+function validateForm(form) {
+  let formLatitude = form["latitude"].value;
+  let formLongitude = form["longitude"].value;
+  var trs = $("#coordTable").children();
+  for(var i = 0; i < trs.length; i++) {
+    var tds = $($(trs[i]).children())
+    var latitude = $(tds[2]).text()
+    var longitude = $(tds[3]).text()
+    if(formLatitude == latitude)
+    {
+      alert("This latitude already exists!");
+      return false;
+    }
+    if(formLongitude === longitude)
+    {
+      alert("This longitude already exists!");
+      return false;
+    }
+  }
+}
