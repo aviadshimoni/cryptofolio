@@ -17,23 +17,46 @@ function clean_modal (btn) {
   $("#createModal :input[name='longitude']").val("");
 };
 
-function validateForm(form) {
-  let formLatitude = form["latitude"].value;
-  let formLongitude = form["longitude"].value;
+function validateLatitude(input) {
+  let formLatitude = $(input).val().toLowerCase();
   var trs = $("#coordTable").children();
   for(var i = 0; i < trs.length; i++) {
     var tds = $($(trs[i]).children())
-    var latitude = $(tds[2]).text()
-    var longitude = $(tds[3]).text()
-    if(formLatitude == latitude)
+    var latitude = $(tds[2]).text().toLowerCase()
+    var inValied= false;
+    if(formLatitude === latitude)
     {
-      alert("This latitude already exists!");
-      return false;
+      inValied=true;
+      break;
     }
+  }
+  if(inValied){
+    input.setCustomValidity("This latitude already exists!")
+    input.reportValidity()
+  }else{
+    input.setCustomValidity("")
+    input.reportValidity()
+  }
+}
+
+function validateLongitude(input) {
+  let formLongitude = $(input).val().toLowerCase();
+  var trs = $("#coordTable").children();
+  for(var i = 0; i < trs.length; i++) {
+    var tds = $($(trs[i]).children())
+    var longitude = $(tds[3]).text().toLowerCase()
+    var inValied= false;
     if(formLongitude === longitude)
     {
-      alert("This longitude already exists!");
-      return false;
+      inValied=true;
+      break;
     }
+  }
+  if(inValied){
+    input.setCustomValidity("This longitude already exists!")
+    input.reportValidity()
+  }else{
+    input.setCustomValidity("")
+    input.reportValidity()
   }
 }
