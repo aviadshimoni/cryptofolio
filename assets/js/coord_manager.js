@@ -17,29 +17,7 @@ function clean_modal (btn) {
   $("#createModal :input[name='longitude']").val("");
 };
 
-function validateForm(form) {
-  let formLatitude = form["latitude"].value;
-  let formLongitude = form["longitude"].value;
-  var trs = $("#coordTable").children();
-  for(var i = 0; i < trs.length; i++) {
-    var tds = $($(trs[i]).children())
-    var latitude = $(tds[2]).text()
-    var longitude = $(tds[3]).text()
-    if(formLatitude == latitude)
-    {
-      alert("This latitude already exists!");
-      return false;
-    }
-    if(formLongitude === longitude)
-    {
-      alert("This longitude already exists!");
-      return false;
-    }
-  }
-}
-
-
-function validatLatitude(input) {
+function validateLatitude(input) {
   let formLatitude = $(input).val().toLowerCase();
   var trs = $("#coordTable").children();
   for(var i = 0; i < trs.length; i++) {
@@ -61,7 +39,7 @@ function validatLatitude(input) {
   }
 }
 
-function validatLongitude(input) {
+function validateLongitude(input) {
   let formLongitude = $(input).val().toLowerCase();
   var trs = $("#coordTable").children();
   for(var i = 0; i < trs.length; i++) {

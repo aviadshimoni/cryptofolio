@@ -22,7 +22,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-          <form method="POST" action="/api/coords" onsubmit="return validateForm(this)">
+          <form method="POST" action="/api/coords">
               <div class="modal-body">  
                   <div class="form-group">
                       <label for="locationName" class="text-dark w-25">Location Name</label>
@@ -30,11 +30,11 @@
                   </div>
                   <div class="form-group">
                       <label for="latitude" class="text-dark w-25">Latitude</label>
-                      <input type="number" step="any" class="w-50" name="latitude" onkeyup="return validatLatitude(this)" placeholder="32.45454" required>
+                      <input type="number" step="any" class="w-50" name="latitude" onkeyup="return validateLatitude(this)" placeholder="32.45454" required>
                   </div>
                   <div class="form-group">
                       <label for="longitude" class="text-dark w-25">Longitude</label>
-                      <input type="number" step="any" class="w-50" name="longitude" onkeyup="return validatLongitude(this)" placeholder="21.456432" required>
+                      <input type="number" step="any" class="w-50" name="longitude" onkeyup="return validateLongitude(this)" placeholder="21.456432" required>
                   </div>
               </div>
               <div class="modal-footer">
@@ -61,7 +61,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-          <form method="POST" id="update_coord" onsubmit="return validateForm(this)">
+          <form method="POST" id="update_coord">
               <div class="modal-body">  
                   <div class="form-group">
                       <label for="locationName" class="text-dark w-25">Location Name</label>
@@ -70,11 +70,11 @@
                   </div>
                   <div class="form-group">
                       <label for="number" class="text-dark w-25">Latitude</label>
-                      <input type="number" step="any" class="w-50" name="latitude" onkeyup="return validatLatitude(this)" placeholder="32.45454" required>
+                      <input type="number" step="any" class="w-50" name="latitude" onkeyup="return validateLatitude(this)" placeholder="32.45454" required>
                   </div>
                   <div class="form-group">
                       <label for="longitude" class="text-dark w-25">Longitude</label>
-                      <input type="number" step="any" class="w-50" name="longitude" onkeyup="return validatLongitude(this)" placeholder="21.456432" required>
+                      <input type="number" step="any" class="w-50" name="longitude" onkeyup="return validateLongitude(this)" placeholder="21.456432" required>
                   </div>
               </div>
               <div class="modal-footer">
@@ -84,8 +84,6 @@
             </div>
           </form>
       </div>
-
-      <!-- Modal footer -->
     </div>
   </div>
 </div>

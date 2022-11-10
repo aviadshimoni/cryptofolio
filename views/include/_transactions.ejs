@@ -12,8 +12,11 @@
             <span><%= transactions[i].amount %></span>
         </td>
         <td>
-            <span><%= new Date(transactions[i].date).toISOString() %></span>
-        </td>
+            <span>
+                <%= new Date(transactions[i].date).toLocaleDateString() %>
+                <%= new Date(transactions[i].date).toString().match("[0-9]+:[0-9]+")[0] %>
+            </span>
+        </td>   
         <td>
             <a id="edit" onClick="edit_click(this)" class="btn border-shadow update btn-light" role="button" aria-pressed="true" data-bs-toggle="modal" data-bs-target="#editModal">
                 <i class="bi bi-pen"></i>

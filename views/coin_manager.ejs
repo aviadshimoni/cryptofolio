@@ -22,11 +22,11 @@
                 <div class="modal-body">  
                     <div class="form-group">
                         <label for="name" class="text-dark w-25">Name</label>
-                        <input type="text" class="w-50" name="name" onkeyup="return validatName(this)" placeholder="ie: Bitcoin" required>
+                        <input type="text" class="w-50" name="name" onkeyup="return validateName(this)" placeholder="ie: Bitcoin" required>
                     </div>
                     <div class="form-group">
                         <label for="shortName" class="text-dark w-25">Short Name</label>
-                        <input type="text" class="w-50" name="shortName" onkeyup="return validatShortName(this)" placeholder="BTC" required>
+                        <input type="text" class="w-50" name="shortName" onkeyup="return validateShortName(this)" placeholder="BTC" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -36,8 +36,6 @@
               </div>
             </form>
         </div>
-  
-        <!-- Modal footer -->
       </div>
     </div>
   </div>
@@ -60,11 +58,11 @@
                     <div class="form-group">
                       <label for="name" class="text-dark w-25">Name</label>
                       <input type="hidden" name="id">
-                      <input type="text" class="w-50" name="name" onkeyup="return validatShortName(this)" onchange="edit_name_change()" placeholder="ie: Bitcoin" required>
+                      <input type="text" class="w-50" name="name" onkeyup="return validateShortName(this)" onchange="edit_name_change()" placeholder="ie: Bitcoin" required>
                     </div>
                     <div class="form-group">
                       <label for="shortName" class="text-dark w-25">Short Name</label>
-                      <input type="text" class="w-50"  name="shortName" onkeyup="return validatShortName(this)" placeholder="BTC" required>
+                      <input type="text" class="w-50"  name="shortName" onkeyup="return validateShortName(this)" placeholder="BTC" required>
                   </div>
                   <div class="form-group">
                       <input type="hidden" name="icon">

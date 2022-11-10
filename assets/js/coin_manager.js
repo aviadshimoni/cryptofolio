@@ -23,7 +23,7 @@ function clean_modal (btn) {
   $("#createModal :input[name='icon']").val("");
 };
 
-function validatShortName(input) {
+function validateShortName(input) {
   let formShortName = $(input).val().toLowerCase();
   var trs = $("#coinTable").children();
   for(var i = 0; i < trs.length; i++) {
@@ -45,7 +45,7 @@ function validatShortName(input) {
   }
 }
 
-function validatName(input) {
+function validateName(input) {
   let formName = $(input).val().toLowerCase();
   var trs = $("#coinTable").children();
   for(var i = 0; i < trs.length; i++) {

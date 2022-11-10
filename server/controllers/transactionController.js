@@ -11,9 +11,8 @@ exports.create = (req, res) => {
   const transaction = new transactionModel({
     amount: req.body.amount,
     userEmail: req.body.userEmail,
-    // userEmail: req.oidc.user.email,
     coinId: req.body.coinId,
-    date: req.body?.date,
+    date: req.body.date,
   });
   transaction
     .save(transaction)
