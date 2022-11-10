@@ -12,7 +12,7 @@ exports.create = (req, res) => {
   const coin = new coinModel({
     name: req.body.name,
     shortName: req.body.shortName,
-    icon: req.body.name.toLowerCase(),
+    icon: req.body.shortName.toLowerCase(),
   });
 
   // save article in the database

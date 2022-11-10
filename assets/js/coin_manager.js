@@ -11,9 +11,9 @@ function edit_click (btn) {
   $("#update_coin").attr("action", "/api/coins/" + id);
 };
 
-function edit_name_change (btn) {
-  var name = $("#editModal :input[name='name']").val();
-  var icon = name.toLowerCase()
+function edit_shortName_change (btn) {
+  var shortName = $("#editModal :input[name='shortName']").val();
+  var icon = shortName.toLowerCase()
   $("#editModal :input[name='icon']").val(icon);
 };
 

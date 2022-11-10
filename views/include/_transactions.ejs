@@ -4,7 +4,7 @@
             <span><%= transactions[i]._id %></span>
         </td>
         <td>
-            <img src="https://github.com/ErikThiart/cryptocurrency-icons/blob/master/icons/<%= transactions[i].coin[0].icon %>.png?raw=true"/>
+            <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/32/color/<%= transactions[i].coin[0].icon %>.png"/>
             <%= transactions[i].coin[0].shortName %>
             <input type="hidden" value="<%= transactions[i].coin[0]._id %>">
         </td>
