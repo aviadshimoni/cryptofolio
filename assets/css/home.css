@@ -135,6 +135,7 @@ nav:hover ul li a{
 
 p.slide-left{
     animation-delay: 1s;
+    font-size: 23px;
 }
 
 .links.slide-left{

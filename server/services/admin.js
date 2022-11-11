@@ -3,7 +3,6 @@ const axios = require("axios");
 const adminMails = [
     'shimoniaviad@gmail.com',
     'tzvika.tubis@gmail.com',
-    'adirbu98@gmail.com',
     'omer5574@gmail.com',
   ];
 
@@ -14,8 +13,8 @@ const isAdmin = (email) => {
 exports.coord_manager = async (req, res) => {
     try {
       if (req.oidc.isAuthenticated()) {
-        var {data} = await axios.get('http://localhost:3000/api/coords')
-        res.render('coord_manager', {
+          const {data} = await axios.get('http://localhost:3000/api/coords');
+          res.render('coord_manager', {
           coords: data,
           isAdmin: isAdmin(req.oidc.user.email),
           isAuth: req.oidc.isAuthenticated(),
@@ -81,9 +80,9 @@ exports.coin_manager = async (req, res) => {
 exports.add_coord = async (req, res) => {
     try {
       if (req.oidc.isAuthenticated()) {
-        var {data} = await axios.get('http://localhost:3000/api/coins')
-        res.render('add_coord', {
-          coins: response.data,
+          const {data} = await axios.get('http://localhost:3000/api/coords');
+          res.render('add_coord', {
+          coins: data,
           isAdmin: isAdmin(req.oidc.user.email),
           isAuth: req.oidc.isAuthenticated(),
         });
@@ -151,7 +150,7 @@ exports.delete_coord = async (req, res) => {
   try {
     if (req.oidc.isAuthenticated()) {
       await axios.delete(`http://localhost:3000/api/coords/${req.query.id}`)
-      var {data} = await axios.get('http://localhost:3000/api/coords')
+      let {data} = await axios.get('http://localhost:3000/api/coords')
       res.render('coord_manager', {
         coords: data,
         isAdmin: isAdmin(req.oidc.user.email),

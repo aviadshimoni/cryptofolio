@@ -2,6 +2,7 @@
 <head>
   <title>Cryptofolio | Admin</title>
   <link rel="stylesheet" href="/css/admin.css">
+    <script src="/js/admin_page.js"></script>
   <%- include('include/_header') %>
 </head>
 
@@ -27,6 +28,9 @@
                 </li>
               </ul>
         </div>
+        <h2 class="search-header"> Search Transactions by Coin </h2>
+        <label for="coinId" class="text-dark w-25">Coin</label>
+        <%- include('include/_admin_transactions') %>
     </div>
   </div>
 </div>

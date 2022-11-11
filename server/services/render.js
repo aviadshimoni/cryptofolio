@@ -104,10 +104,36 @@ exports.admin_page = async (req, res) => {
         const { data } = await axios.get(
           `http://localhost:3000/api/transactions/usersStats`
         );
+        const coins = await axios.get(
+            `http://localhost:3000/api/coins`
+        );
+        query = req.query;
+        let transactions=[];
+        let select = "All Coins"
+        if(query.coinId && query.coinId!=="all")
+        {
+          transactions = await axios.get(
+            `http://localhost:3000/api/transactions-by-coin/${query.coinId}`
+          );
+          let coin = await axios.get(
+              `http://localhost:3000/api/coins/${query.coinId}`
+          );
+           select = coin.data.name
+        }
+        else{
+          transactions = await axios.get(
+            `http://localhost:3000/api/transactions`
+          );
+        }
+
+        console.log(transactions)
         res.render('admin_page', {
           isAdmin: isAdmin(req.oidc.user.email),
           stats: JSON.stringify(data),
           isAuth: req.oidc.isAuthenticated(),
+          coins: coins.data,
+          currentSelect: select,
+          transactions: transactions.data,
         });
       }
       catch (e) {
