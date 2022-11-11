@@ -104,10 +104,14 @@ exports.admin_page = async (req, res) => {
         const { data } = await axios.get(
           `http://localhost:3000/api/transactions/usersStats`
         );
+        const coins = await axios.get(
+            `http://localhost:3000/api/coins`
+        );
         res.render('admin_page', {
           isAdmin: isAdmin(req.oidc.user.email),
           stats: JSON.stringify(data),
           isAuth: req.oidc.isAuthenticated(),
+          coins: coins.data
         });
       }
       catch (e) {

@@ -2,6 +2,7 @@
 <head>
   <title>Cryptofolio | Admin</title>
   <link rel="stylesheet" href="/css/admin.css">
+    <script src="/js/admin_page.js"></script>
   <%- include('include/_header') %>
 </head>
 
@@ -26,6 +27,15 @@
                     <a href="admin/coin-manager" class="btn btn-light btn-lg active w-50" role="button" aria-pressed="true">Coin Manager</a>
                 </li>
               </ul>
+        </div>
+        <h2 class="search-header"> Search Transactions by Coin </h2>
+        <div class="search">
+            <label for="coinId" class="text-dark w-25">Coin</label>
+            <select class="w-50" onselect="search(this)" name="coinId" required>
+                <% for(var i=0; i < coins.length; i++) { %>
+                    <option value="<%= coins[i]._id %>"><%= coins[i].name %></option>
+                <% } %>
+            </select>
         </div>
     </div>
   </div>

@@ -62,7 +62,7 @@ exports.get = (req, res) => {
         res.status(500).send({
           message:
             err.message ||
-            'Error Occurred while retriving transaction information',
+            'Error Occurred while retrieving transaction information',
         });
       });
   } else {
@@ -188,6 +188,19 @@ exports.usersStats = (req, res) => {
       if (!transaction) {
         res.status(404).send({
           message: 'Not found transaction',
+        });
+      } else {
+        res.send(transaction);
+      }
+    });
+};
+
+exports.getTransactionsByCoin = (req, res) => {
+  const coinID = req.params.id;
+    transactionModel.find({"coinId": coinID}).then((transaction) => {
+      if (!transaction) {
+        res.status(404).send({
+          message: 'Not found transaction with the following query',
         });
       } else {
         res.send(transaction);
