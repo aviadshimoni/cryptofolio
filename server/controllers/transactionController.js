@@ -54,7 +54,16 @@ exports.get = (req, res) => {
   const query = req.query;
   if (Object.keys(query).length === 0) {
     transactionModel
-      .find()
+      .aggregate([
+        {
+          $lookup: {
+            from: 'coins',
+            localField: 'coinId',
+            foreignField: '_id',
+            as: 'coin',
+          },
+        },
+      ])
       .then((transaction) => {
         res.send(transaction);
       })
@@ -196,8 +205,22 @@ exports.usersStats = (req, res) => {
 };
 
 exports.getTransactionsByCoin = (req, res) => {
-  const coinID = req.params.id;
-    transactionModel.find({"coinId": coinID}).then((transaction) => {
+  const coinId = mongoose.Types.ObjectId(req.params.id);
+    transactionModel
+    .aggregate([
+      {
+        $match: { coinId: coinId },
+      },
+      {
+        $lookup: {
+          from: 'coins',
+          localField: 'coinId',
+          foreignField: '_id',
+          as: 'coin',
+        },
+      },
+    ])
+    .then((transaction) => {
       if (!transaction) {
         res.status(404).send({
           message: 'Not found transaction with the following query',
@@ -207,3 +230,4 @@ exports.getTransactionsByCoin = (req, res) => {
       }
     });
 };
+

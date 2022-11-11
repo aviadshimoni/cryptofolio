@@ -29,14 +29,8 @@
               </ul>
         </div>
         <h2 class="search-header"> Search Transactions by Coin </h2>
-        <div class="search">
-            <label for="coinId" class="text-dark w-25">Coin</label>
-            <select class="w-50" change="search(this)" id="searchByCoin">
-                <% for(var i=0; i < coins.length; i++) { %>
-                    <option value="<%= coins[i]._id %>"><%= coins[i].name %></option>
-                <% } %>
-            </select>
-        </div>
+        <label for="coinId" class="text-dark w-25">Coin</label>
+        <%- include('include/_admin_transactions') %>
     </div>
   </div>
 </div>
