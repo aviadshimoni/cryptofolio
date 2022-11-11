@@ -63,7 +63,38 @@ exports.maps = (req, res) => {
   }
 };
 
-// OMER
+exports.about = (req, res) => {
+  try {
+    if (req.oidc.isAuthenticated()) {
+      res.render('about', {
+        isAdmin: isAdmin(req.oidc.user.email),
+        isAuth: req.oidc.isAuthenticated(),
+      });
+    }
+    else {
+      res.render('index');
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+exports.contact = (req, res) => {
+  try {
+    if (req.oidc.isAuthenticated()) {
+      res.render('about', {
+        isAdmin: isAdmin(req.oidc.user.email),
+        isAuth: req.oidc.isAuthenticated(),
+      });
+    }
+    else {
+      res.render('index');
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 exports.user_transactions = async (req, res) => {
   if (req.oidc.isAuthenticated()) {
     try {
