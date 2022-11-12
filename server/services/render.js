@@ -82,13 +82,15 @@ exports.about = (req, res) => {
 exports.contact = (req, res) => {
   try {
     if (req.oidc.isAuthenticated()) {
-      res.render('about', {
+      res.render('contact', {
         isAdmin: isAdmin(req.oidc.user.email),
         isAuth: req.oidc.isAuthenticated(),
       });
     }
     else {
-      res.render('index');
+      res.render('contact', {
+        isAuth: req.oidc.isAuthenticated(),
+      });
     }
   } catch (e) {
     console.log(e);
