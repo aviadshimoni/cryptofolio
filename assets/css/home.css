@@ -84,6 +84,23 @@ nav:hover ul li a{
     text-shadow: 2px 2px #000000;
 }
 
+canvas {
+	object-fit: contain;
+	width: 40%;
+	margin: 0px;
+	display: block;
+    align-items: center;
+}
+
+a {
+	color: #fafafa;
+	transition: linear 0.3s;
+}
+
+a:hover {
+	opacity: 0.8;
+}
+
 .links{
     margin-top: 30px ;
     opacity: 0;
