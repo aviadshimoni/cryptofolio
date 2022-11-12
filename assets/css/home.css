@@ -67,18 +67,21 @@ nav:hover ul li a{
     margin-left: 7%;
     margin-right: 7%;
     color: #fff;
+    
 }
 
 .content h1{
     font-size: 120px;
     line-height: 100px;
     font-weight: 600;
+    text-shadow: 3px 3px #000000;
 }
 
 .content p{
     max-width: 500px;
     line-height: 28px;
     opacity: 0;
+    text-shadow: 2px 2px #000000;
 }
 
 .links{

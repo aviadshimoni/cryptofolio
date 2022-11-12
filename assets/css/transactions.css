@@ -135,6 +135,7 @@ nav:hover ul li a{
 
 h2.slide-left{
     animation-delay: 1s;
+    text-shadow: 2px 2px #000000;
 }
 
 .links.slide-left{
