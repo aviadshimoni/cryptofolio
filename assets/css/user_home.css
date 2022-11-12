@@ -72,6 +72,7 @@ nav:hover ul li a{
     font-size: 120px;
     line-height: 100px;
     font-weight: 600;
+    text-shadow: 3px 3px #000000;
 }
 
 .content p{
