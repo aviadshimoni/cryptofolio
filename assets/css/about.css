@@ -2,17 +2,64 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+    font-size: 'poppins', sans-serif;
+}
+
+form{
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 2vw 4vw;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+form h2{
+    color: #555;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+form input,form textarea{
+    border: 0;
+    margin: 10px 0;
+    padding: 20px;
+    outline: none;
+    background: #f5f5f5;
+    font-size: 16px;
+    
+}
+
+form button{
+    padding: 15px;
+    background: #4b6c86;
+    color: #fff;
+    font-size: 18px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    width: 150px;
+    margin: 20px auto 0;
+    border-radius: 30px;
 }
 
 .header{
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(126, 133, 132, 0.5),rgba(5, 3, 77, 0.5)),url(../img/b6.jpg);
+    background-image: linear-gradient(rgba(126, 133, 132, 0.5),rgba(5, 3, 77, 0.5)),url(../img/b5.jpg);
     background-position: center;
     background-size: cover;
     overflow-x: hidden;
 
+}
+
+.container{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 nav{
@@ -78,7 +125,11 @@ nav:hover ul li a{
 .content p{
     max-width: 500px;
     line-height: 28px;
-    opacity: 0;
+}
+
+.content img{
+    width: 140px;
+    height: 140px;
 }
 
 .links{
@@ -211,4 +262,4 @@ table {
 .axisWhite text{
     fill: white;
     font-size: 14px
-}  
+} 

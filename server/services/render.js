@@ -72,23 +72,7 @@ exports.about = (req, res) => {
       });
     }
     else {
-      res.render('index');
-    }
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-exports.contact = (req, res) => {
-  try {
-    if (req.oidc.isAuthenticated()) {
-      res.render('contact', {
-        isAdmin: isAdmin(req.oidc.user.email),
-        isAuth: req.oidc.isAuthenticated(),
-      });
-    }
-    else {
-      res.render('contact', {
+      res.render('about', {
         isAuth: req.oidc.isAuthenticated(),
       });
     }

@@ -1,7 +1,8 @@
 <html>
 <head>
-  <title>Cryptofolio | About </title>
+  <title>Cryptofolio | Contact </title>
   <link rel="stylesheet" href="/css/about.css">
+  <script src="http://localhost:3000/js/about.js"></script>
   <%- include('include/_header') %>
 </head>
 
@@ -9,6 +10,48 @@
 <div class="header">
   <%- include('include/_nav') %>
   <div class="content">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active container">
+          <div class="row">
+            <div class="col-lg-4">
+              <img src="/img/logo.png" class="rounded-circle"></img>
+              <h2 class="fw-normal">Heading</h2>
+              <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+            </div>
+            <div class="col-lg-4">
+              <img src="/img/logo.png" class="rounded-circle"></img>
+              <h2 class="fw-normal">Heading</h2>
+              <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+            </div>
+            <div class="col-lg-4">
+              <img src="/img/logo.png" class="rounded-circle"></img>
+              <h2 class="fw-normal">Heading</h2>
+              <p>And lastly this, the third column of representative placeholder content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container">
+            <form id="contactForm" onsubmit="sendEmail(); reset(); return false;">
+              <h2>Get In Touch</h2>
+              <input type="text" name="name" placeholder="Your Name" required>
+              <input type="text" name="subject" placeholder="Subject" required>
+              <textarea name="message" rows="4" placeholder="How we can help you?"></textarea>
+              <button type="submit">Send</button>
+          </form>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
   </div>
 </div>
 </body>
