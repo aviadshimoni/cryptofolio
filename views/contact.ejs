@@ -11,11 +11,11 @@
   <%- include('include/_nav') %>
   <div class="content">
     <div class="container">
-      <form onsubmit="sendEmail(); reset(); return false;">
+      <form id="contactForm" onsubmit="sendEmail(); reset(); return false;">
         <h2>Get In Touch</h2>
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <textarea id="message" rows="4" placeholder="How we can help you?"></textarea>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" rows="4" placeholder="How we can help you?"></textarea>
         <button type="submit">Send</button>
     </form>
     </div>
