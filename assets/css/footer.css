@@ -1,0 +1,17 @@
+footer{
+    transition: 1s;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 2%;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+}
+
+footer:hover{
+    background: #fff;
+}
+
+footer:hover div p{
+    color: #333;
+}

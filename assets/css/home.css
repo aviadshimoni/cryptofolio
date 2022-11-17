@@ -63,11 +63,10 @@ nav:hover ul li a{
 }
 
 .content {
-    margin-top: 4%;
+    margin-top: 2%;
     margin-left: 7%;
     margin-right: 7%;
     color: #fff;
-    
 }
 
 .content h1{
@@ -75,13 +74,6 @@ nav:hover ul li a{
     line-height: 100px;
     font-weight: 600;
     text-shadow: 3px 3px #000000;
-}
-
-.content p{
-    max-width: 500px;
-    line-height: 28px;
-    opacity: 0;
-    text-shadow: 2px 2px #000000;
 }
 
 .links{
@@ -139,9 +131,34 @@ nav:hover ul li a{
 p.slide-left{
     animation-delay: 1s;
     font-size: 23px;
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+    line-height: 28px;
+    opacity: 0;
+    text-shadow: 2px 2px #000000;
+    padding-top: 20%;
 }
 
 .links.slide-left{
     text-align: center;
 }
 
+p.what{
+    line-height: 28px;
+    column-count: 2;
+    text-align: justify;
+}
+
+h2{
+    text-shadow: 2px 2px #000000;
+}
+
+video{
+    width: 100%;
+    height: 100%;
+}
+
+section.what{
+    padding-top: 7%;
+}
