@@ -24,6 +24,7 @@ route.use(auth(config));
 
 route.get('/', services.user_home);
 route.get('/maps', services.maps);
+route.get('/about', services.about);
 
 // OMER is working here
 route.get('/transactions', services.user_transactions);
