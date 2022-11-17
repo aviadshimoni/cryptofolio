@@ -1,68 +1,80 @@
 <html>
+
 <head>
   <title>Cryptofolio | About </title>
   <link rel="stylesheet" href="/css/about.css">
   <script src="http://localhost:3000/js/about.js"></script>
+
   <%- include('include/_header') %>
 </head>
 
 <body>
-<div class="header">
-  <%- include('include/_nav') %>
-  <div class="content">
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active container">
-          <div class="about">
-            <div class="row">
-              <aside class="col-4">
-                <div class="list-group" id="list-tab" role="tablist">
-                  <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-about" role="tab" aria-controls="list-home">ABOUT US</a>
-                  <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-project" role="tab" aria-controls="list-profile">OUR PROJEC</a>
-                  <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-why" role="tab" aria-controls="list-messages">WHY US</a>
-                </div>
-              </aside>
-              <div class="col-8">
-                <div class="tab-content" id="nav-tabContent">
-                  <div class="tab-pane fade show active" id="list-about" role="tabpanel" aria-labelledby="list-home-list">
-                    Aviad Shimoni | Tzvika Tubis | Omer Sharon | Moran Eshel 
-                  </div>
-                  <div class="tab-pane fade" id="list-project" role="tabpanel" aria-labelledby="list-profile-list">
-                    Cryptofolio is a cryptocurrency portfolio tracker app that allows you to track your historical transactions,
-                    their value and get statistics about them with over 20 cryptocurrencies supported.
-                    Join now in order to save your precious coins from malware/phishing activities. 
-                  </div>
-                  <div class="tab-pane fade" id="list-why" role="tabpanel" aria-labelledby="list-messages-list">
-                    Manage your wallet with complete security and comfort.
+  <div class="header">
+    <%- include('include/_nav') %>
+      <div class="content">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active container">
+              <div class="about">
+                <div class="row">
+                  <aside class="col-4">
+                    <div class="list-group" id="list-tab" role="tablist">
+                      <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list"
+                        href="#list-about" role="tab" aria-controls="list-home">ABOUT US</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
+                        href="#list-project" role="tab" aria-controls="list-profile">OUR PROJEC</a>
+                      <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list"
+                        href="#list-why" role="tab" aria-controls="list-messages">WHY US</a>
+                    </div>
+                  </aside>
+                  <div class="col-8">
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade show active" id="list-about" role="tabpanel"
+                        aria-labelledby="list-home-list">
+
+                        <canvas id="namesCanvas" width="700" height="100"></canvas>
+                        </canvas>
+                      </div>
+                      <div class="tab-pane fade" id="list-project" role="tabpanel" aria-labelledby="list-profile-list">
+                        Cryptofolio is a cryptocurrency portfolio tracker app that allows you to track your historical
+                        transactions,
+                        their value and get statistics about them with over 20 cryptocurrencies supported.
+                        Join now in order to save your precious coins from malware/phishing activities.
+                      </div>
+                      <div class="tab-pane fade" id="list-why" role="tabpanel" aria-labelledby="list-messages-list">
+                        Manage your wallet with complete security and comfort.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-        </div>
-        </div>
-        <div class="carousel-item">
-          <div class="container">
-            <form id="contactForm" onsubmit="sendEmail(); reset(); return false;">
-              <h2>Get In Touch</h2>
-              <input type="text" name="name" placeholder="Your Name" required>
-              <input type="text" name="subject" placeholder="Subject" required>
-              <textarea name="message" rows="4" placeholder="How we can help you?"></textarea>
-              <button type="submit">Send</button>
-          </form>
+            <div class="carousel-item">
+              <div class="container">
+                <form id="contactForm" onsubmit="sendEmail(); reset(); return false;">
+                  <h2>Get In Touch</h2>
+                  <input type="text" name="name" placeholder="Your Name" required>
+                  <input type="text" name="subject" placeholder="Subject" required>
+                  <textarea name="message" rows="4" placeholder="How we can help you?"></textarea>
+                  <button type="submit">Send</button>
+                </form>
+              </div>
+            </div>
           </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+      <%- include('include/_footer') %>
   </div>
-  <%- include('include/_footer') %>
-</div>
 </body>
+
 </html>

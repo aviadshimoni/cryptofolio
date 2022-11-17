@@ -1,0 +1,13 @@
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    background: black;
+    overflow: hidden;
+  }
+  
+  canvas {
+    max-width: 100%;
+  }
+  
