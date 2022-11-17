@@ -55,6 +55,7 @@ form button{
 }
 
 .container{
+    column-width:600px;
     width: 100%;
     height: 70%;
     display: flex;
@@ -169,28 +170,6 @@ nav:hover ul li a{
     color: #fff;
 }
 
-.slide-left{
-    animation: slideleft 1s linear forwards;
-}
-
-@keyframes slideleft{
-    0%{
-        transform: translate(100px);
-        opacity: 0;
-    }
-    100%{
-        transform: translate(0px);
-        opacity: 1;
-    }
-}
-
-h2.slide-left{
-    animation-delay: 1s;
-}
-
-.links.slide-left{
-    text-align: center;
-}
 
 
 table {
@@ -263,3 +242,21 @@ table {
     fill: white;
     font-size: 14px
 } 
+
+div.about_us{
+    position: relative;
+    left: 80px;
+}
+
+div.p{
+    margin: 15px;
+    width: 230;
+    background-color: #3b3d3f;
+    opacity: 0.9;
+    border-radius: 5px;
+}
+
+div.p p{
+    margin: 5%;
+    color: rgb(255, 255, 255);
+}
