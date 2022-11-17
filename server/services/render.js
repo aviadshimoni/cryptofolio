@@ -3,7 +3,6 @@ const axios = require('axios');
 const adminMails = [
   'shimoniaviad@gmail.com',
   'tzvika.tubis@gmail.com',
-  'adirbu98@gmail.com',
   'omer5574@gmail.com',
 ];
 
