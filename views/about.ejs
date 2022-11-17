@@ -34,6 +34,17 @@
 
                         <canvas id="namesCanvas" width="700" height="100"></canvas>
                         </canvas>
+                        <script>
+                          var canvas = document.getElementById("namesCanvas");
+                          var ctx = canvas.getContext("2d");
+                          ctx.strokeStyle = 'navy';
+                          ctx.font = "20px Verdana";
+                          ctx.fillStyle = "white";
+                          ctx.lineWidth = 4;
+                          ctx.textAlign = "center";
+                          ctx.strokeText("Aviad Shimoni | Tzvika Tubis | Omer Sharon | Moran Eshel ", 350, 20);
+                          ctx.fillText("Aviad Shimoni | Tzvika Tubis | Omer Sharon | Moran Eshel ", 350, 20);
+                        </script>
                       </div>
                       <div class="tab-pane fade" id="list-project" role="tabpanel" aria-labelledby="list-profile-list">
                         Cryptofolio is a cryptocurrency portfolio tracker app that allows you to track your historical
