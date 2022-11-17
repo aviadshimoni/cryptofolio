@@ -9,13 +9,44 @@
 <div class="header">
   <%- include('include/_nav') %>
   <div class="content">
-    <h1 class="slide-left">Stay<br> &nbsp Secure</h1>
-    <p class="slide-left"><br> Setup your account in a few clicks
-      and manage all your crypto directly from Cryptofolio.</p>
-    <div class="links slide-left">
-      <a href="/login">Login</a>
-    </div>
+    <section>
+      <div class="row">
+        <div class="col">
+          <h1 class="slide-left">Stay<br> &nbsp Secure</h1>
+        </div>
+        <div class="col">
+          <p class="slide-left">Setup your account in a few clicks and manage all <br> your crypto directly from Cryptofolio.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="what">
+      <h2>What is cryptocurrency?</h2>
+      <div class="row">
+        <div class="col-8">
+          <p class="what">
+            Cryptocurrency is a digital payment system that doesn't rely on banks to verify transactions. 
+            It’s a peer-to-peer system that can enable anyone anywhere to send and receive payments. 
+            Instead of being physical money carried around and exchanged in the real world, 
+            cryptocurrency payments exist purely as digital entries to an online database describing specific transactions. 
+            When you transfer cryptocurrency funds, the transactions are recorded in a public ledger. 
+            Cryptocurrency is stored in digital wallets.
+            Cryptocurrency received its name because it uses encryption to verify transactions. 
+            This means advanced coding is involved in storing and transmitting cryptocurrency data between wallets and to public ledgers. 
+            The aim of encryption is to provide security and safety.
+            The first cryptocurrency was Bitcoin, which was founded in 2009 and remains the best known today.
+            Much of the interest in cryptocurrencies is to trade for profit, with speculators at times driving prices skyward.
+          </p>
+        </div>
+        <div class="col-4">
+          <video width="320" height="240" controls>
+            <source src="img/about.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
   </div>
+  <%- include('include/_footer') %>
 </div>
 </body>
 </html>

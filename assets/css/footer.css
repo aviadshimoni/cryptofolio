@@ -1,0 +1,14 @@
+footer{
+    transition: 1s;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 2%;
+}
+
+footer:hover{
+    background: #fff;
+}
+
+footer:hover div p{
+    color: #333;
+}
