@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,16 +10,46 @@ body {
     flex-direction: column;
 }
 
-.header{
+font-face {
+    font-family: 'Roboto Mono', monospace;
+    src: url(fonts/roboto-mono-v12-latin-regular.woff2) format('woff2'),
+        url(fonts/roboto-mono-v12-latin-regular.woff) format('woff'),
+        url(fonts/roboto-mono-v12-latin-regular.ttf) format('truetype');
+        font-display: optional;
+}
+
+font-face {
+    font-family: 'Roboto Mono', monospace;
+    src: url(fonts/roboto-mono-v12-latin-700italic.woff2) format('woff2'),
+        url(fonts/roboto-mono-v12-latin-700italic.woff) format('woff'),
+        url(fonts/roboto-mono-v12-latin-700italic.ttf) format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: optional;
+
+}
+
+h1,
+h2 {
+    font-family: 'Roboto Mono', monospace;
+}
+
+h1 {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.header {
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(126, 133, 132, 0.5),rgba(5, 3, 77, 0.5)),url(../img/b6.jpg);
+    background-image: linear-gradient(rgba(126, 133, 132, 0.5), rgba(5, 3, 77, 0.5)), url(../img/b6.jpg);
     background-position: center;
     background-size: cover;
     overflow-x: hidden;
 }
 
-nav{
+nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -28,7 +58,7 @@ nav{
     transition: 1s;
 }
 
-nav .logo{
+nav .logo {
     display: flex;
     align-items: center;
     font-size: 26px;
@@ -37,32 +67,32 @@ nav .logo{
     cursor: pointer;
 }
 
-nav .logo img{
+nav .logo img {
     width: 60px;
     margin-right: 10px;
 }
 
-nav ul li{
+nav ul li {
     display: inline-block;
     list-style: none;
     margin: 10px 20px;
 }
 
-nav ul li a{
+nav ul li a {
     text-decoration: none;
     color: #fff;
     font-weight: 500;
 }
 
-nav:hover{
+nav:hover {
     background: #fff;
 }
 
-nav:hover .logo{
+nav:hover .logo {
     color: #333;
 }
 
-nav:hover ul li a{
+nav:hover ul li a {
     color: #333;
 }
 
@@ -74,25 +104,25 @@ nav:hover ul li a{
     height: 69%;
 }
 
-.content h1{
+.content h1 {
     font-size: 120px;
     line-height: 100px;
     font-weight: 600;
     text-shadow: 3px 3px #000000;
 }
 
-.content p{
+.content p {
     max-width: 500px;
     line-height: 28px;
     opacity: 0;
 }
 
-.links{
-    margin-top: 30px ;
+.links {
+    margin-top: 30px;
     opacity: 0;
 }
 
-.links a{
+.links a {
     width: 150px;
     margin: 0 10px;
     padding: 12px 0;
@@ -101,11 +131,11 @@ nav:hover ul li a{
     color: #fff;
     text-decoration: none;
     display: inline-block;
-    position: relative ;
+    position: relative;
     z-index: 1;
 }
 
-.links a span{
+.links a span {
     width: 0;
     height: 100%;
     position: absolute;
@@ -116,35 +146,36 @@ nav:hover ul li a{
     transition: 0.5s;
 }
 
-.links a:hover span{
+.links a:hover span {
     width: 100%;
 }
 
-.links a:hover{
+.links a:hover {
     color: #fff;
 }
 
-.slide-left{
+.slide-left {
     animation: slideleft 1s linear forwards;
 }
 
-@keyframes slideleft{
-    0%{
+@keyframes slideleft {
+    0% {
         transform: translate(100px);
         opacity: 0;
     }
-    100%{
+
+    100% {
         transform: translate(0px);
         opacity: 1;
     }
 }
 
-h2.slide-left{
+h2.slide-left {
     animation-delay: 1s;
     text-shadow: 2px 2px #000000;
 }
 
-.links.slide-left{
+.links.slide-left {
     text-align: center;
 }
 
@@ -162,7 +193,7 @@ table {
     border-top: 1px solid var(--border);
 }
 
-.table td > a.btn {
+.table td>a.btn {
     padding: 0.3em 1em;
     font-size: 1.1em;
     margin: 0 0.2em;
@@ -172,7 +203,7 @@ table {
     background-color: #27445c;
 }
 
-.table tr:hover td > a {
+.table tr:hover td>a {
     box-shadow: none;
 }
 
@@ -183,6 +214,7 @@ table {
 }
 
 @media only screen and (max-width: 1024px) {
+
     table,
     thead,
     tbody,

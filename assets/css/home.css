@@ -14,16 +14,8 @@
     overflow-x: hidden;
 
 }
-
-font-face {
-    font-family: myFirstFont;
-    src: url(sansation_light.woff);
- }
- 
- * {
-    font-family: myFirstFont;
- }
-nav{
+  
+  nav{
     width: 100%;
     display: flex;
     justify-content: space-between;
