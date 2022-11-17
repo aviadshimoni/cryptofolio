@@ -13,43 +13,33 @@
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active container">
-          <div id="about-2">
-            <div class="content-box-lg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                           <div class="about-item text-center">
-                            <i class="fa fa-book"></i>
-                            <h3>ABOUT US</h3>
-                            <hr>
-                            <p> Aviad Shimoni | Tzvika Tubis <br/>Omer Sharon &nbsp;| Moran Eshel </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="about-item text-center">
-                            <i class="fa fa-globe"></i>
-                            <h3>OUR PROJECT</h3>
-                            <hr>
-                            <p> Cryptofolio is a cryptocurrency portfolio tracker app that allows you to track your historical transactions,
-                              their value and get statistics about them with over 20 cryptocurrencies supported.
-                              Join now in order to save your precious coins from malware/phishing activities. </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="about-item text-center">
-                            <i class="fa fa-pencil"></i>
-                            <h3>WHY US</h3>
-                            <hr>
-                            <p> Manage your wallet with complete security </br>and comfort. </p>
-                            </div>
-                         </div>
-                     </div>
-                   </div>
+          <div class="about">
+            <div class="row">
+              <aside class="col-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                  <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-about" role="tab" aria-controls="list-home">ABOUT US</a>
+                  <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-project" role="tab" aria-controls="list-profile">OUR PROJEC</a>
+                  <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-why" role="tab" aria-controls="list-messages">WHY US</a>
                 </div>
-             </div>   
+              </aside>
+              <div class="col-8">
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="list-about" role="tabpanel" aria-labelledby="list-home-list">
+                    Aviad Shimoni | Tzvika Tubis | Omer Sharon | Moran Eshel 
+                  </div>
+                  <div class="tab-pane fade" id="list-project" role="tabpanel" aria-labelledby="list-profile-list">
+                    Cryptofolio is a cryptocurrency portfolio tracker app that allows you to track your historical transactions,
+                    their value and get statistics about them with over 20 cryptocurrencies supported.
+                    Join now in order to save your precious coins from malware/phishing activities. 
+                  </div>
+                  <div class="tab-pane fade" id="list-why" role="tabpanel" aria-labelledby="list-messages-list">
+                    Manage your wallet with complete security and comfort.
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
-
-
+        </div>
         <div class="carousel-item">
           <div class="container">
             <form id="contactForm" onsubmit="sendEmail(); reset(); return false;">
@@ -62,8 +52,6 @@
           </div>
         </div>
       </div>
-
-      
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -74,6 +62,7 @@
       </button>
     </div>
   </div>
+  <%- include('include/_footer') %>
 </div>
 </body>
 </html>

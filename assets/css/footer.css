@@ -3,6 +3,9 @@ footer{
     color: #fff;
     font-weight: 500;
     margin-top: 2%;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
 }
 
 footer:hover{
