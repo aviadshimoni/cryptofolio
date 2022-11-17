@@ -15,6 +15,14 @@
 
 }
 
+font-face {
+    font-family: myFirstFont;
+    src: url(sansation_light.woff);
+ }
+ 
+ * {
+    font-family: myFirstFont;
+ }
 nav{
     width: 100%;
     display: flex;
