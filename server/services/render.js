@@ -4,6 +4,8 @@ const adminMails = [
   'shimoniaviad@gmail.com',
   'tzvika.tubis@gmail.com',
   'omer5574@gmail.com',
+  'moran.esh@gmail.com',
+  'aviad.shimoni@doubleverify.com'
 ];
 
 const isAdmin = (email) => {
