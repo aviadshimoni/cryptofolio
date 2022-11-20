@@ -15,13 +15,12 @@ exports.create = (req, res) => {
     icon: req.body.shortName.toLowerCase(),
   });
 
-  // save article in the database
   coin
     .save(coin)
     .then((data) => {
       res.status(200);
       res.redirect('/admin/coin-manager');
-     })
+     }).then(axios.get(`http://localhost:3000/api/twitter?coinName=${req.body.name}`))
       .catch((err) => {
         res.status(500).send({
           message:
@@ -29,8 +28,6 @@ exports.create = (req, res) => {
               'Some error occurred while creating a create operation',
         });
       });
-      // TODO: add before test
-      // then(axios.get(`http://localhost:3000/api/twitter?coinName=${req.body.name}`)
 };
 
 exports.getId = (req, res) => {
